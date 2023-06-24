@@ -17,7 +17,7 @@ import com.board.mvc.dto.reply.ReplyUpdateDTO;
 
 import lombok.extern.log4j.Log4j2;
 
-// Board Reply ,ReplyChild Mapper Test 
+// Board Reply ,ReplyChild Mapper Test
 @Log4j2
 @SpringBootTest
 public class ReplyMapperTests {
