@@ -99,6 +99,7 @@
 | reply | VARCHAR(1000) | 답글의 내용 |
 | replyer | VARCHAR(100) | 답글을 작성한 사용자명 |
 | replyDate | TIMESTMAP | 답글이 작성된 날짜와 시간 (기본값은 현재 시간) |
+| modifyDate | TIMESTMAP | 답글이 수정된 날짜와 시간 (기본값은 현재 시간) |
 | gno | int | 그룹 번호 (기본값 0) |
 
 
@@ -123,6 +124,7 @@ CREATE TABLE tbl_reply (
     reply VARCHAR(1000) NOT NULL,
     replyer VARCHAR(100) NOT NULL,
     replyDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    modifyDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     gno INT DEFAULT 0,
     FOREIGN KEY (tno) REFERENCES tbl_board(tno) ON DELETE CASCADE
 );
