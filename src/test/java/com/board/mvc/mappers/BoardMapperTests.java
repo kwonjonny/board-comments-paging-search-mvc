@@ -55,7 +55,6 @@ public class BoardMapperTests {
        .build();
     }
 
-
     // BoardMapper Create Test 
     @Test
     @Transactional
