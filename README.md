@@ -1,5 +1,4 @@
 
-
 # 개발 상태 : [개발 Start]
 
 # boardReplyMvc
@@ -13,7 +12,7 @@
 
 ### 빌드 플러그인
 - `java`: Java 플러그인을 사용하여 프로젝트에 Java 컴파일 기능을 추가합니다.
-- `org.springframework.boot`: Spring Boot 기능을 프로젝트에 추가합니다. 버전은 3.1.0으로 설정됩니다.
+- `org.springframework.boot`: Spring Boot 기능을 프로젝트에 추가합니다. 버전은 3.1.1으로 설정됩니다.
 - `io.spring.dependency-management`: Spring의 의존성 관리 기능을 추가합니다. 버전은 1.1.0입니다.
 
 ### 프로젝트 정보
@@ -91,6 +90,17 @@
 | registDate | TIMESTAMP        | Board 의 생성 날짜          |
 | updateDate  | TIMESTAMP           | Board 의 업데이트 날짜                        |
 
+### Reply 테이블 ('tbl_reply')
+| 컬럼명 | 데이터 타입 | 설명 |
+| --- | --- | --- |
+| rno | INT | 답글 항목의 고유 식별자 (Primary Key, 자동 증가) |
+| tno | VARCHAR(500) | 관련 Todo 항목의 고유 식별자 |
+| reply | VARCHAR(1000) | 답글의 내용 |
+| replyer | VARCHAR(100) | 답글을 작성한 사용자명 |
+| replyDate | TIMESTMAP | 답글이 작성된 날짜와 시간 (기본값은 현재 시간) |
+| gno | int | 그룹 번호 (기본값 0) |
+
+
 
 SQL 스키마:
 ```sql
@@ -102,6 +112,16 @@ CREATE TABLE tbl_board (
 	writer VARCHAR(100) NOT NULL,
 	registDate TIMESTAMP default NOW(),
 	updateDate TIMESTAMP default NOW()
+)
+;
+
+CREATE TABLE tbl_reply (
+    rno INT AUTO_INCREMENT PRIMARY KEY,
+    tno INT NOT NULL,
+    reply VARCHAR(1000) NOT NULL,
+    replyer VARCHAR(100) NOT NULL,
+    replyDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    gno int default 0 
 )
 ;
 
