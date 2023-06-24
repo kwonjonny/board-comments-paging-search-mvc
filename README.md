@@ -16,7 +16,7 @@
 - `io.spring.dependency-management`: Spring의 의존성 관리 기능을 추가합니다. 버전은 1.1.0입니다.
 
 ### 프로젝트 정보
-- `group`: 프로젝트 그룹 ID를 'my'로 설정합니다.
+- `group`: 프로젝트 그룹 ID를 'com.board'로 설정합니다.
 - `version`: 프로젝트 버전을 '0.0.1-SNAPSHOT'으로 설정합니다.
 - `sourceCompatibility`: 프로젝트 Java 버전을 17로 설정합니다.
 
@@ -89,6 +89,7 @@
 | writer   | VARCHAR(100)   | Board 항목을 생성한 사용자명 (null이 아님)     |
 | registDate | TIMESTAMP        | Board 의 생성 날짜          |
 | updateDate  | TIMESTAMP           | Board 의 업데이트 날짜                        |
+| replyCnt | INT | Board 의 댓글 개수 |
 
 ### Reply 테이블 ('tbl_reply')
 | 컬럼명 | 데이터 타입 | 설명 |
@@ -98,6 +99,7 @@
 | reply | VARCHAR(1000) | 답글의 내용 |
 | replyer | VARCHAR(100) | 답글을 작성한 사용자명 |
 | replyDate | TIMESTMAP | 답글이 작성된 날짜와 시간 (기본값은 현재 시간) |
+| modifyDate | TIMESTMAP | 답글이 수정된 날짜와 시간 (기본값은 현재 시간) |
 | gno | int | 그룹 번호 (기본값 0) |
 
 
@@ -110,8 +112,9 @@ CREATE TABLE tbl_board (
 	title VARCHAR(500) NOT NULL,
 	content VARCHAR(1000) NOT NULL,
 	writer VARCHAR(100) NOT NULL,
-	registDate TIMESTAMP default NOW(),
-	updateDate TIMESTAMP default NOW()
+	registDate TIMESTAMP DEFAULT NOW(),
+	updateDate TIMESTAMP DEFAULT NOW(),
+	replyCnt int DEFAULT 0
 )
 ;
 
@@ -121,8 +124,9 @@ CREATE TABLE tbl_reply (
     reply VARCHAR(1000) NOT NULL,
     replyer VARCHAR(100) NOT NULL,
     replyDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    gno int default 0 
-)
-;
+    modifyDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    gno INT DEFAULT 0,
+    FOREIGN KEY (tno) REFERENCES tbl_board(tno) ON DELETE CASCADE
+);
 
 ```
