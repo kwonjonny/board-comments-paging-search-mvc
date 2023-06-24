@@ -1,6 +1,6 @@
 
 
-# 개발 상태 : [개발완료]
+# 개발 상태 : [개발 Start]
 
 # boardReplyMvc
 - 프로젝트 유형: Board 게시판 , Reply 댓글, 페이지네이션 연습 
