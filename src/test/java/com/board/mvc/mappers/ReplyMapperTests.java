@@ -77,8 +77,11 @@ public class ReplyMapperTests {
     @Transactional
     @DisplayName("게시판 댓글 생성 메퍼 테스트")
     public void createReplyTest() {
+        // GIVEN 
         log.info("========== Start Create Reply Mapper Test ==========");
+        // WHEN
         int insertCount = replyMapper.createReply(replyCreateDTO);
+        // THEN
         Assertions.assertEquals(1, insertCount, "Create Reply Should Be Successful");
         if(insertCount != 1) {
             throw new RuntimeException("Create Failed");
@@ -102,8 +105,11 @@ public class ReplyMapperTests {
     @Transactional
     @DisplayName("게시판 대댓글 생성 매퍼 테스트")
     public void createReplyChildTest() {
+        // GIVEN
         log.info("========== Start Create ReplyChild Mapper Test ==========");
+        // WHEN
         int insertCount = replyMapper.createReplyChild(replyCreateChildDTO);
+        // THEN 
         Assertions.assertEquals(1, insertCount, "Create ReplyChild Shold Be Successful");
         log.info(replyCreateChildDTO.getGno());
 
@@ -122,8 +128,11 @@ public class ReplyMapperTests {
     @Transactional
     @DisplayName("게시판 댓글 조회 매퍼 테스트")
     public void readReplyTest() {
+        // GIVEN
         log.info("========== Start Read Reply Mapper Test ==========");
+        // WHEN
         ReplyDTO replyDTO = replyMapper.readReply(TEST_RNO);
+        // THEN
         log.info(replyDTO);
         log.info("========== End Read Reply Mapper Test ==========");
     }
@@ -133,9 +142,12 @@ public class ReplyMapperTests {
     @Transactional
     @DisplayName("게시판 리스트 조회 매퍼 테스트")
     public void listReplyTest() {
+        // GIVEN
         log.info("========== Start List Reply Mapper Test ==========");
         PageRequestDTO pageRequestDTO = PageRequestDTO.builder().build();
+        // WHEN 
         List<ReplyDTO> list = replyMapper.listReply(pageRequestDTO, TEST_TNO);
+        // THEN 
         log.info(list);
         log.info("========== End List Reply Mapper Test ==========");
     }
@@ -145,9 +157,12 @@ public class ReplyMapperTests {
     @Transactional
     @DisplayName("게시판 삭제 매퍼 테스트")
     public void delteReplyTest() {
+        // GIVEN
         log.info("========== Start Delete Reply Mapper Test ==========");
+        // WHEN
         replyMapper.deleteReply(TEST_RNO);
 
+        // THEN
         // tbl_board replyCnt Update 
         replyMapper.decrementReplyCount(TEST_TNO);
         log.info("========== End Delete Reply Mapper Test ==========");
@@ -158,9 +173,12 @@ public class ReplyMapperTests {
     @Transactional
     @DisplayName("게시판 댓글 업데이트 매퍼 테스트")
     public void updateReplyTest() {
+        // GIVEN
         log.info("========== Start Update Reply Mapper Test ==========");
+        // WHEN
         replyMapper.updateReply(replyUpdateDTO);
 
+        // THEN
         ReplyDTO updatedReply = replyMapper.readReply(TEST_RNO);
         log.info(updatedReply);
         log.info("========== End Update Reply Mapper Test ==========");
@@ -171,9 +189,12 @@ public class ReplyMapperTests {
     @Transactional
     @DisplayName("게시판 대댓글 업데이트 매퍼 테스트")
     public void updateReplyChildTest() {
+        // GIVEN
         log.info("========== Start Update Reply Child Mapper TEst ==========");
+        // WHEN
         replyMapper.updateReply(replyUpdateChildDTO);
 
+        // THEN
         ReplyDTO updatedReplyChild = replyMapper.readReply(TEST_RNO);
         log.info(updatedReplyChild);
         log.info("========== End Update Reply Child Mapper Test ==========");

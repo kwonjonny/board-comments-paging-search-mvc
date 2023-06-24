@@ -62,8 +62,11 @@ public class BoardServiceTests {
     @Transactional
     @DisplayName("생성 게시판 서비스 테스트")
     public void createBoardServiceTest() {
+        // GIVEN 
         log.info("========== Start Create Board Service Test");
+        // WHEN 
         int insertCount = boardService.createBoard(boardCreateDTO);
+        // THEN 
         Assertions.assertEquals(1, insertCount, "Create Board Service Should Be Successful");
         log.info("========== End Create Board Service Test");
     }
@@ -73,8 +76,11 @@ public class BoardServiceTests {
     @Transactional
     @DisplayName("조회 게시판 서비스 테스트")
     public void readBoardServiceTest() {
+        // GIVEN 
         log.info("========== Start Read Board Service Test");
+        // WHEN 
         BoardDTO readBoardDTO = boardService.readBoard(TEST_TNO);
+        // THEN 
         log.info(readBoardDTO);
         log.info("========== End Read Board Service Test ==========");
     }
@@ -84,8 +90,11 @@ public class BoardServiceTests {
     @Transactional
     @DisplayName("삭제 게시판 서비스 테스트")
     public void deleteBoardServiceTest() {
+        // GIVEN 
         log.info("========== Start Delete Board Service Test ==========");
+        // WHEN 
         boardService.deleteBoard(TEST_TNO);
+        // THEN 
         BoardDTO boardDeletedDTO = boardService.readBoard(TEST_TNO);
         Assertions.assertNull(boardDeletedDTO, "Delete Board Service Should Be Null");
         log.info("========== End Read Board Service Test ==========");
@@ -96,10 +105,13 @@ public class BoardServiceTests {
     @Transactional
     @DisplayName("업데이트 게시판 서비스 테스트")
     public void updateBoardServiceTest() {
+        // GIVEN 
         log.info("========== Start Update Board Service Test ==========");
+        // WHEN 
         boardService.updateBoard(boardUpdateDTO);
+        // THEN 
         BoardDTO boardUpdatedDTO = boardService.readBoard(TEST_TNO);
-         assertNotNull(boardUpdatedDTO, "Updated Board should not be null");
+        assertNotNull(boardUpdatedDTO, "Updated Board should not be null");
         assertEquals(TEST_TITLE, boardUpdatedDTO.getTitle(), "Title should be updated");
         log.info("========== End Update Board Service Test ==========");
     }
@@ -109,13 +121,17 @@ public class BoardServiceTests {
     @Transactional
     @DisplayName("리스트 게시판 서비스 테스트")
     public void listBoardServiceTest() {
-          log.info("========== Start Board Service list =========");
+        // GIVEN 
+        log.info("========== Start Board Service list =========");
+        // WHEN 
         PageRequestDTO pageRequestDTO = PageRequestDTO.builder()
             .searchType("title")
             .keyword("권성준님")
             .build();
         PageResponseDTO<BoardListDTO> response = boardService.listBoard(pageRequestDTO); 
 
+
+        // THEN 
         // list 로그 
         log.info(response);
         // 가져온 게시물들이 검색 조건에 부합하는지 확인

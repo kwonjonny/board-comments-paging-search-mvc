@@ -60,9 +60,14 @@ public class BoardMapperTests {
     @Transactional
     @DisplayName("생성 테스트 게시판 매퍼")
     public void createBoardMapperTest() {
+        // GIEVEN
         log.info("========== Start Create Board Mapper ==========");
+        // WHEN
         int insertCount = boardMapper.createBoard(boardCreateDTO);
         Assertions.assertEquals(1, insertCount,"create board test should be sucessful");
+        // THEN
+        BoardDTO boardDTO = boardMapper.readBoard(TEST_TNO);
+        log.info(boardDTO);
         log.info("========== End Create Board Mapper Test ==========");
     }
 
@@ -71,8 +76,11 @@ public class BoardMapperTests {
     @Transactional
     @DisplayName("리스트 테스트 게시판 매퍼")
     public void listBoardMapperTest() {
+        // GIVEN
         log.info("========== Start List Board Mapper ==========");
+        // WHEN 
         PageRequestDTO pageRequestDTO = PageRequestDTO.builder().build();
+        // THEN 
         log.info(boardMapper.listBoard(pageRequestDTO));
         log.info("========== End List Board Mapper Test ==========");
     }
@@ -82,8 +90,11 @@ public class BoardMapperTests {
     @Transactional
     @DisplayName("조회 테스트 게시판 매퍼")
     public void readBoardMapperTest() {
+        // GIVEN 
         log.info("========== Start Read Board Mapper ==========");
+        // WHEN 
         BoardDTO boardDTO = boardMapper.readBoard(TEST_TNO);
+        // THEN 
         log.info(boardDTO);
         Assertions.assertNotNull(boardDTO , "boardDTO should be not null");
         log.info("========== End Read Board Mapper Test ==========");
@@ -94,8 +105,13 @@ public class BoardMapperTests {
     @Transactional
     @DisplayName("삭제 테스트 게시판 매퍼")
     public void deleteBoardMapperTest() {
+        // GIVEN
         log.info("========== Start Delete Board Mapper ==========");
+        // WHEN 
         boardMapper.deleteBoard(TEST_TNO);
+        // THEN 
+        BoardDTO boardDTO = boardMapper.readBoard(TEST_TNO);
+        Assertions.assertNull(boardDTO, "deletedBoard Should Be Null");
         log.info("========== End Delete Board Mapper ==========");
     }
 
@@ -104,8 +120,11 @@ public class BoardMapperTests {
     @Transactional
     @DisplayName("업데이트 테스트 게시판 매퍼")
     public void updateBoardMapperTest() {
+        // GIVEN 
         log.info("========== Start Update Board Mapper =========");
+        // WHEN 
         boardMapper.updateBoard(boardUpdateDTO);
+        // THEN 
         BoardDTO updateDTO = boardMapper.readBoard(TEST_TNO);
         Assertions.assertNotNull(updateDTO , "boardDTO should be update sucessful");
         log.info(updateDTO);
@@ -117,9 +136,12 @@ public class BoardMapperTests {
     @Transactional
     @DisplayName("TotalCount 테스트 게시판 매퍼")
     public void totalBoardMapperTest() {
+        // GIEVEN 
         log.info("========== Start Board Mapper Total ==========");
+        // WHEN 
         PageRequestDTO pageRequestDTO = PageRequestDTO.builder().build();
         Integer totalCount = boardMapper.total(pageRequestDTO);
+        // THEN 
         Assertions.assertNotNull(totalCount >= 0 , "Total count should be non-negative");
         log.info(totalCount);
         log.info("=========== End Board Mapper Total ==========");

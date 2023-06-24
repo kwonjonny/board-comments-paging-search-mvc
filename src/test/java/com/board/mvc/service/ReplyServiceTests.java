@@ -82,8 +82,11 @@ public class ReplyServiceTests {
     @Transactional
     @DisplayName("게시판 댓글 생성 테스트")
     public void createReplyServiceTest() {
+        // GIVEN 
         log.info("========== Start Create Reply Service Test ==========");
+        // WHEN 
         Long insertCount = replyService.createReply(replyCreateDTO);
+        // THEN 
         ReplyDTO replyDTO = replyService.readReply(TEST_RNO);
         Assertions.assertNotNull(insertCount, "Create Reply Test Should Be Successful");
         log.info(replyDTO);
@@ -95,8 +98,11 @@ public class ReplyServiceTests {
     @Transactional
     @DisplayName("게시판 대댓글 생성 서비스 테스트")
     public void createReplyChildServiceTest() {
+        // GIVEN 
         log.info("========== Start Create Reply Child Service Test ==========");
+        // WHEN 
         Long insetCount = replyService.createReply(replyCreateChildDTO);
+        // THEN 
         ReplyDTO replyDTO = replyService.readReply(TEST_TNO);
         Assertions.assertNotNull(insetCount, "Create Reply Child Test Should Be Successful");
         log.info(replyDTO);
@@ -108,8 +114,11 @@ public class ReplyServiceTests {
     @Transactional
     @DisplayName("게시판 댓글 조회 서비스 테스트")
     public void readReplyServiceTest() {
+        // GIVEN 
         log.info("========== Start Read Reply Service Test ==========");
+        // WHEN 
         ReplyDTO replyDTO = replyService.readReply(TEST_RNO);
+        // THEN 
         log.info(replyDTO);
         log.info("========== End Read Reply Service Test ==========");
     }
@@ -119,10 +128,13 @@ public class ReplyServiceTests {
     @Transactional
     @DisplayName("게시판 댓글 리스트 서비스 테스트")
     public void listRpelyServiceTest() {
+        // GIVEN 
         log.info("========== Start List Reply Service Test ==========");
+        // WHEN 
         PageRequestDTO pageRequestDTO = PageRequestDTO.builder().build();
         Long tno = TEST_TNO;
         PageResponseDTO<ReplyDTO> list = replyService.listReply(pageRequestDTO, tno);
+        // THEN 
         log.info(list.getList());
         log.info("========== End List Reply Service Test ==========");
     }
@@ -132,8 +144,11 @@ public class ReplyServiceTests {
     @Transactional
     @DisplayName("게시판 댓글 업데이트 서비스 테스트")
     public void updateReplyServiceTest() {
+        // GIVEN 
         log.info("========== Start Update Reply Service Test ==========");
+        // WHEN 
         replyService.updateReply(replyUpdateDTO);
+        // THEN 
         ReplyDTO updatedReply = replyService.readReply(TEST_RNO);
         log.info(updatedReply);
         Assertions.assertNotNull(updatedReply);
@@ -145,8 +160,11 @@ public class ReplyServiceTests {
     @Transactional
     @DisplayName("게시판 대댓글 업데이트 서비스 테스트")
     public void updateReplyChildServiceTest() {
+        // GIVEN 
         log.info("========== Start Update Reply Child Service Test ==========");
+        // WHEN 
         replyService.updateReply(replyUpdateChildDTO);
+        // THEN
         ReplyDTO updatedReplyChild = replyService.readReply(TEST_RNO);
         log.info(updatedReplyChild);
         Assertions.assertNotNull(updatedReplyChild);
@@ -158,8 +176,11 @@ public class ReplyServiceTests {
     @Transactional
     @DisplayName("게시판 댓글 삭제 서비스 테스트")
     public void dleteReplyServiceTest() {
+        // GIVEN 
         log.info("========== Start Delete Reply Service Test ==========");
+        // WHEN 
         replyService.deleteReply(TEST_RNO);
+        // THEN 
         ReplyDTO deletedReply = replyService.readReply(TEST_RNO);
         Assertions.assertNull(deletedReply, "deletedReply Should Be Null");
         log.info("========== End Delete Reply Service Test ==========");
