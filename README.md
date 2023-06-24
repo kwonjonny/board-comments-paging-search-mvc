@@ -16,7 +16,7 @@
 - `io.spring.dependency-management`: Spring의 의존성 관리 기능을 추가합니다. 버전은 1.1.0입니다.
 
 ### 프로젝트 정보
-- `group`: 프로젝트 그룹 ID를 'my'로 설정합니다.
+- `group`: 프로젝트 그룹 ID를 'com.board'로 설정합니다.
 - `version`: 프로젝트 버전을 '0.0.1-SNAPSHOT'으로 설정합니다.
 - `sourceCompatibility`: 프로젝트 Java 버전을 17로 설정합니다.
 
@@ -121,8 +121,8 @@ CREATE TABLE tbl_reply (
     reply VARCHAR(1000) NOT NULL,
     replyer VARCHAR(100) NOT NULL,
     replyDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    gno int default 0 
-)
-;
+    gno INT DEFAULT 0,
+    FOREIGN KEY (tno) REFERENCES tbl_board(tno) ON DELETE CASCADE
+);
 
 ```
