@@ -1,5 +1,4 @@
 
-
 # 개발 상태 : [개발 Start]
 
 # boardReplyMvc
@@ -13,7 +12,7 @@
 
 ### 빌드 플러그인
 - `java`: Java 플러그인을 사용하여 프로젝트에 Java 컴파일 기능을 추가합니다.
-- `org.springframework.boot`: Spring Boot 기능을 프로젝트에 추가합니다. 버전은 3.1.0으로 설정됩니다.
+- `org.springframework.boot`: Spring Boot 기능을 프로젝트에 추가합니다. 버전은 3.1.1으로 설정됩니다.
 - `io.spring.dependency-management`: Spring의 의존성 관리 기능을 추가합니다. 버전은 1.1.0입니다.
 
 ### 프로젝트 정보
