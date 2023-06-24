@@ -1,4 +1,4 @@
-package com.board.mvc.dto.board;
+package com.board.mvc.dto.reply;
 
 import java.time.LocalDate;
 
@@ -15,13 +15,12 @@ import lombok.ToString;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class BoardDTO {
-    // tbl_board
+public class ReplyUpdateDTO {
+    private Long rno;
     private Long tno;
-    private String title;
-    private String content;
-    private String writer;
-    private LocalDate registDate;
-    private LocalDate updateDate;
-    private int replyCnt;
+    private String reply;
+    private String replyer;
+    private LocalDate replyDate;
+    private LocalDate modifyDate;
+    private Long gno;
 }

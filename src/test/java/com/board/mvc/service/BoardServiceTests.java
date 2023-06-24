@@ -18,7 +18,6 @@ import com.board.mvc.dto.board.BoardListDTO;
 import com.board.mvc.dto.board.BoardUpdateDTO;
 import com.board.mvc.dto.page.PageRequestDTO;
 import com.board.mvc.dto.page.PageResponseDTO;
-import com.board.mvc.service.BoardService;
 
 import lombok.extern.log4j.Log4j2;
 

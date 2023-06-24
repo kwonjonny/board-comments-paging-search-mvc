@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.board.mvc.mappers.ReplyMapper">
+
+
+    <!-- ReplyMapper id = "createReply" -->
+    <insert id="createReply" parameterType="com.board.mvc.dto.reply.ReplyCreateDTO">
+        INSERT INTO tbl_reply 
+        (tno, reply, replyer) 
+        VALUES (#{tno}, #{reply}, #{replyer})
+
+        <!-- last insert id 확인 -->
+        <selectKey resultType="long" keyProperty="rno" order="AFTER">
+        SELECT LAST_INSERT_ID()
+        </selectKey> 
+    </insert>
+
+
+    <!-- ReplyMapper id = "createReplyChild" -->
+    <insert id="createReplyChild" parameterType="com.board.mvc.dto.reply.ReplyCreateDTO">
+        INSERT INTO tbl_reply 
+        (tno, reply, replyer, gno)
+        VALUES (#{tno}, #{reply}, #{replyer}, #{gno})
+
+        <!-- last insert id 확인 -->
+        <selectKey resultType="long" keyProperty="rno" order="AFTER">
+        SELECT LAST_INSERT_ID()
+        </selectKey> 
+    </insert>
+
+
+    <!-- ReplyMapper id = "readReply" -->
+    <select id="readReply" parameterType="long" resultType="com.board.mvc.dto.reply.ReplyDTO">
+        SELECT * FROM tbl_reply 
+        WHERE rno = #{rno}
+    </select>
+
+
+    <!-- ReplyMapper id = "deleteReply" -->
+    <delete id="deleteReply">
+        DELETE FROM tbl_reply 
+        WHERE rno = #{rno}    
+    </delete>
+
+
+    <!-- ReplyMapper id = "listReply" -->
+    <select id="listReply" parameterType="com.board.mvc.dto.reply.ReplyDTO">
+        SELECT IF(rno = gno, 0,1) AS step,
+        tno, rno, gno, reply, replyer, replyDate, modifyDate
+        FROM tbl_reply
+        WHERE tno = #{tno}
+        ORDER BY gno asc, rno asc 
+        LIMIT #{page.skip}, #{page.size}
+    </select>
+
+
+    <!-- ReplyMapper id = "updateGno" -->
+    <update id="updateGno" parameterType="long">
+        UPDATE tbl_reply 
+        SET gno = #{gno}
+        WHERE rno = #{rno}
+    </update>
+
+
+    <!-- ReplyMapper id = "totalReply" -->
+    <select id="totalReply">
+        SELECT COUNt(*) FROM tbl_reply
+        WHERE tno = #{tno}
+    </select>
+
+
+    <!-- ReplyMapper id = "updateReply" -->
+    <update id="updateReply" parameterType="com.board.mvc.dto.reply.ReplyUpdateDTO">
+        UPDATE tbl_reply
+        SET reply = #{reply} , replyer = #{replyer}, modifyDate = now()
+        WHERE rno = #{rno}
+    </update>
+
+
+    <!-- ReplyMapepr id = "incrementReplyCount" -->
+    <update id="incrementReplyCount" parameterType="long">
+        UPDATE tbl_board 
+        SET replyCnt = replyCnt + 1 
+        WHERE tno = #{tno}
+    </update>
+
+
+    <!-- ReplyMapper id = "decrementReplyCount" -->
+    <update id="decrementReplyCount" parameterType="long">
+        UPDATE tbl_board 
+        SET replyCnt = replyCnt - 1 
+        WHERE tno = #{tno}
+    </update>
+
+
+</mapper>

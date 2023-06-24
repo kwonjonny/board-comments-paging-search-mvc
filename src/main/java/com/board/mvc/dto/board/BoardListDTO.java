@@ -23,4 +23,5 @@ public class BoardListDTO {
     private String writer;
     private LocalDate registDate;
     private LocalDate updateDate;
+    private int replyCnt;
 }

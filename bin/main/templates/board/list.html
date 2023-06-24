@@ -6,6 +6,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Board List Page</title>
+    <style>
+        .title {
+            font-weight: bold;
+            margin-right: 10px;
+        }
+    
+        .reply-count {
+            font-size: 0.8em;
+            color: blueviolet;
+        }
+    </style>
 </head>
 <body>
 
@@ -35,7 +46,7 @@
               <thead>
               <tr>
                 <th>tno</th>
-                <th>title</th>
+                <th>제목:title 댓글:replyCount</th>
                 <th>writer</th>
                 <th>craeteDate</th>
               </tr>
@@ -43,7 +54,10 @@
               <tbody>
               <tr th:each="board :${boardDTO.list}">
                 <td class="boardRead" th:data-tno="${board.tno}">[[${board.tno}]]</td>
-                <td>[[${board.title}]]</td>
+                <td>
+                    <span class="title" th:text="${board.title}"></span>
+                    <span class="reply-count" th:text="'댓글: ' + ${board.replyCnt}"></span>
+                </td>                
                 <td>[[${board.writer}]]</td>
                 <td>[[${board.registDate}]]</td>
               </tr>

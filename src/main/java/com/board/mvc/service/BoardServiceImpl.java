@@ -16,7 +16,7 @@ import com.board.mvc.mappers.BoardMapper;
 
 
 
-// BoardService 구현체 클래스 
+// BoardService implements class  
 @Service
 public class BoardServiceImpl implements BoardService {
 
