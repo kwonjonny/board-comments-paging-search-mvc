@@ -1,5 +1,5 @@
 
-# 개발 상태 : [게시판 개발 완료 , 댓글 대댓글 개발중(Controller 제외 ServerTest Complete)]
+# 개발 상태 : [게시판 개발 완료 , 댓글 대댓글 개발중(Server RestContoller, Service Test Complete)]
 
 # boardReplyMvc
 - 프로젝트 유형: Board 게시판 , Reply 댓글, 페이지네이션 연습 
