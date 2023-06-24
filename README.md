@@ -89,6 +89,7 @@
 | writer   | VARCHAR(100)   | Board 항목을 생성한 사용자명 (null이 아님)     |
 | registDate | TIMESTAMP        | Board 의 생성 날짜          |
 | updateDate  | TIMESTAMP           | Board 의 업데이트 날짜                        |
+| replyCnt | INT | Board 의 댓글 개수 |
 
 ### Reply 테이블 ('tbl_reply')
 | 컬럼명 | 데이터 타입 | 설명 |
@@ -110,8 +111,9 @@ CREATE TABLE tbl_board (
 	title VARCHAR(500) NOT NULL,
 	content VARCHAR(1000) NOT NULL,
 	writer VARCHAR(100) NOT NULL,
-	registDate TIMESTAMP default NOW(),
-	updateDate TIMESTAMP default NOW()
+	registDate TIMESTAMP DEFAULT NOW(),
+	updateDate TIMESTAMP DEFAULT NOW(),
+	replyCnt int DEFAULT 0
 )
 ;
 
