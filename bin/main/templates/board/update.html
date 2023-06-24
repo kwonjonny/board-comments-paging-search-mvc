@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout.html}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Board Update Page</title>
+</head>
+<body>
+
+    <div layout:fragment="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <form class="form-horizontal actionForm">
+                                
+                                <!-- tno satrt -->
+                                <div class="form-group row">
+                                    <label for="tno" class="col-sm-3 text-end control-label col-form-label">Tno</label>
+                                    <div class="col-sm-9">
+                                    <input type="text" class="form-control" name="tno" id="tno" th:value="${boardDTO.tno}" readonly/>
+                                    </div>
+                                </div>
+                                <!-- tno end -->
+
+                                <!-- title start -->
+                                <div class="form-group row">
+                                    <label for="Title" class="col-sm-3 text-end control-label col-form-label">Title</label>
+                                    <div class="col-sm-9">
+                                    <input type="text" class="form-control" name="title" id="title" th:value="${boardDTO.title}"/>
+                                    </div>
+                                </div>
+                                <!-- title end -->
+
+                                <!-- writer start -->
+                                <div class="form-group row">
+                                    <label for="writer" class="col-sm-3 text-end control-label col-form-label">Writer</label>
+                                    <div class="col-sm-9">
+                                    <input type="text" class="form-control" name="writer" id="writer" th:value="${boardDTO.writer}"/>
+                                    </div>
+                                </div>
+                                <!-- writer end -->
+
+                                <!-- registDate start -->
+                                <div class="form-group row">
+                                    <label for="registDate" class="col-sm-3 text-end control-label col-form-label">RegistDate</label>
+                                    <div class="col-sm-9">
+                                    <input type="text" class="form-control" name="registDate" id="registDate" th:value="${boardDTO.registDate}"readonly/>
+                                    </div>
+                                </div>
+                                <!-- registDate end -->
+
+                                <!-- updateDate start -->
+                                <div class="form-group row">
+                                    <label for="modfiyDate" class="col-sm-3 text-end control-label col-form-label">UpdateDate</label>
+                                    <div class="col-sm-9">
+                                    <input type="text" class="form-control" name="modfiyDate" id="modfiyDate" th:value="${boardDTO.updateDate}" readonly/>
+                                    </div>
+                                </div>
+                                <!-- updateDate end -->
+
+                                <!-- content start -->
+                                <div class="form-group row">
+                                    <label for="content" class="col-sm-3 text-end control-label col-form-label">Content</label>
+                                    <div class="col-sm-9">
+                                    <textarea class="form-control" name="content" id="content" th:text="${boardDTO.content}"></textarea>
+                                    </div>
+                                </div>
+                                <!-- content end-->
+
+                                 <!-- update button start -->
+                                <div class="border-top">
+                                    <div class="card-body">
+                                    <button type="button" class="btn btn-primary updateButton">게시글 수정 submit</button>
+                                    </div>
+                                </div>
+                                <!-- update button end -->
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script layout:fragment ="script" th:inline = "javascript">
+
+        const actionForm = document.querySelector(".actionForm");
+
+        const actionUpdate = document.querySelector(".updateButton")
+
+        actionUpdate.addEventListener("click", (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+
+            actionForm.setAttribute("action", `/board/update`)
+            actionForm.setAttribute("method", `post`)
+            actionForm.submit();
+        },false)
+    </script>
+    
+</body>
+</html>

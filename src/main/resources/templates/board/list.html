@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout.html}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Board List Page</title>
+</head>
+<body>
+
+    <div layout:fragment="content">
+        <h1>Board List Page</h1>
+        <div class="card">
+          <div class="card-header">
+          </div>
+            <div class="card-body">
+    
+                   <!-- searchType start -->
+                   <div class="input-group mb-3">
+                    <button type="button" class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                      <span class="visually-hidden">Toggle Dropdown</span>
+                    </button>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="#">작성자</a></li>
+                      <li><a class="dropdown-item" href="#">제목</a></li>
+                      <li><a class="dropdown-item" href="#">내용</a></li>
+                    </ul>
+                    <input type="text" class="form-control" aria-label="Text input with segmented dropdown button">
+                    <button type="button" class="btn btn-outline-secondary">Search</button>
+                  </div>
+                  <!-- searchType end -->
+    
+            <table class="table table-bordered boardTable">
+              <thead>
+              <tr>
+                <th>tno</th>
+                <th>title</th>
+                <th>writer</th>
+                <th>craeteDate</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr th:each="board :${boardDTO.list}">
+                <td class="boardRead" th:data-tno="${board.tno}">[[${board.tno}]]</td>
+                <td>[[${board.title}]]</td>
+                <td>[[${board.writer}]]</td>
+                <td>[[${board.registDate}]]</td>
+              </tr>
+    
+              </tbody>
+            </table>
+          </div>
+    
+          <!-- /.card-body -->
+          <div class="card-footer clearfix">
+            <ul class="pagination boardUl">
+              <li class="page-item"><a class="page-link" href="10">&laquo;</a></li>
+              <li class="page-item"><a class="page-link" href="11">11</a></li>
+              <li class="page-item"><a class="page-link" href="12">12</a></li>
+              <li class="page-item"><a class="page-link" href="13">13</a></li>
+              <li class="page-item"><a class="page-link" href="21">&raquo;</a></li>
+            </ul>
+          </div>
+        </div>
+        <!-- /.card -->
+    
+        <form class ="actionForm" action = "/board/list" method = "get">
+          <input type="hidden" name="page" th:value = "${pageRequestDTO.page}">
+          <!-- 어느 페이지를 가든 size는 유지  -->
+          <input type="hidden" name="size" th:value = "${pageRequestDTO.size}">
+          <!-- keyword -->
+          <!-- SearchType 1페이지로 가야 함 -->
+          <button type="button" class="btn btn-primary createButton">게시글 글쓰기</button>
+        </form>
+    
+        
+      <script src = "/js/pageUtil.js">
+      </script>
+    
+      </div>
+
+      <script layout:fragment ="script" th:inline = "javascript">
+
+
+   
+        // actionFrom 등록 
+        const actionForm = document.querySelector(".actionForm")
+
+        // boardRead 등록 
+        const actionRead = document.querySelectorAll(".boardRead")
+
+        const pageObj = actionForm.querySelector("input[name='page']")
+        const boardUl = document.querySelector(".boardUl")
+        boardUl.addEventListener("click", (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+
+            const target = e.target
+            const pageNum = target.getAttribute("href");
+
+            pageObj.value = pageNum
+            actionForm.setAttribute("action" , `/board/list`)
+            actionForm.submit();
+
+        },false)
+        const {page,size} = [[${pageRequestDTO}]]
+        const {total} = [[${boardDTO}]]
+        const pageList = makePages(page,size,total)
+        boardUl.innerHTML = pageList
+
+
+        // 각 boardRead 요소에 이벤트 리스너 추가
+        actionRead.forEach(actionRead => {
+            actionRead.addEventListener("click", (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+
+                const target = e.target;
+
+                if (!target.getAttribute("data-tno")) {
+                    return;
+                }
+
+                const tno = target.getAttribute("data-tno");
+
+                actionForm.setAttribute("action", `/board/read/${tno}`);
+                actionForm.submit();
+            }, false);
+        });
+        // createButton eventListner 등록 
+        // click 이벤트가 발생시 /board/create 로 get 요청 
+        const actionCreate = document.querySelector(".createButton")
+        actionCreate.addEventListener("click", (e) => {
+            e.preventDefault()
+            e.stopPropagation()
+
+            actionForm.setAttribute("action", `/board/create`)
+            actionForm.setAttribute("method", `get`)
+            actionForm.submit();
+        },false)
+
+
+        // 검색 eventListner 등록 
+        // click 이벤트가 발생시 /board/list 로 get 요청 
+        // 검색 결과 list 형식으로 보여줌 
+        const dropdwonItem = document.querySelectorAll(".dropdown-menu a")
+        dropdwonItem.forEach(item => {
+            item.addEventListener("click", (e) => {
+                
+            e.preventDefault()
+            e.stopPropagation()
+
+            const searchType = e.target.getAttribute("data-searchtype")
+            document.getElementById("searchType").value = searchType
+        },false)
+    },false)
+
+      </script>
+    
+</body>
+</html>

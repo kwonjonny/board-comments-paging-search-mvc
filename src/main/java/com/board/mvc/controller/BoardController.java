@@ -73,16 +73,16 @@ public class BoardController {
         log.info("POST | board/create");
         int insertCount = boardService.createBoard(boardCreateDTO);
         redirectAttributes.addFlashAttribute("message", insertCount + " 번 : 게시물 등록이 완료되었습니다");
-        return "redirect : /board/list";    
+        return "redirect:/board/list";    
     }
 
     // POST : deleteBoard
-    @PostMapping("delete")
+    @PostMapping("delete/{tno}")
     public String postDelete(@PathVariable("tno") Long tno, RedirectAttributes redirectAttributes) {
         log.info("POST | board/create");
         boardService.deleteBoard(tno);
         redirectAttributes.addFlashAttribute("mesaage", "게시물 삭제가 완료되었습니다");
-        return "redirect : board/list";
+        return "redirect:/board/list";
     }
 
     // POST : updateBoard
@@ -91,7 +91,6 @@ public class BoardController {
         log.info("POST | board/update");
         boardService.updateBoard(boardUpdateDTO);
         redirectAttributes.addFlashAttribute("message", "게시물 업데이트가 완료되었습니다");
-        return "redirect : /board/read" + boardUpdateDTO.getTno();
+        return "redirect:/board/read/" + boardUpdateDTO.getTno();
     }
-
 }

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout.html}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Board Create Page</title>
+</head>
+<body>
+
+ <!-- fragment content start -->
+ <div layout:fragment="content">
+    <h1>Board Create Page</h1>
+    <div class="container-fluid">
+        <!-- ============================================================== -->
+        <!-- Start Page Content -->
+        <!-- ============================================================== -->
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+
+              <!-- 등록 페이지 -->
+              <!-- form start -->
+              <form class="form-horizontal actionButton" name="valueCheck" method="post">
+                <div class="card-body">
+                  <h4 class="card-title">등록 페이지</h4>
+                  <div class="form-group row">
+                    <label for="fname" class="col-sm-3 text-end control-label col-form-label"></label>
+                  </div>
+
+                  <!-- title start -->
+                  <div class="form-group row">
+                    <label for="title" class="col-sm-3 text-end control-label col-form-label">Title</label>
+                    <div class="col-sm-9">
+                      <input type="text" class="form-control" id="title" name="title" th:required = "required"/>
+                    </div>
+                  </div>
+                  <!-- title end -->
+
+                  <!-- writer start -->
+                  <div class="form-group row">
+                    <label for="writer" class="col-sm-3 text-end control-label col-form-label">Writer</label>
+                    <div class="col-sm-9">
+                      <input type="text" class="form-control" id="writer" name="writer" th:required = "required"/>
+                    </div>
+                  </div>
+                 <!-- writer end -->
+
+                  <!-- content start -->
+                  <div class="form-group row">
+                    <label for="content" class="col-sm-3 text-end control-label col-form-label">Content</label>
+                    <div class="col-sm-9">
+                      <textarea class="form-control" name="content" th:required = "required"></textarea>
+                    </div>
+                  </div>
+                </div>
+                <!-- content end -->
+
+                <!-- button start -->
+                <div class="border-top">
+                  <div class="card-body">
+                    <button type="button" class="btn btn-primary createButton">
+                      게시글 등록
+                    </button>
+                  </div>
+                </div>
+                <!-- button end -->
+
+              </form>
+              <!-- form end -->
+
+            </div>
+          </div>
+        </div>
+     </div>
+     <!-- fragment content end -->
+
+     <!-- javaScript start -->
+     <script layout:fragment ="script" th:inline = "javascript">
+
+        const actionForm = document.querySelector(".actionButton");
+
+        const actionCreate = document.querySelector(".createButton");
+        actionCreate.addEventListener("click", (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+
+            actionForm.setAttribute("action", `/board/create`);
+            actionForm.setAttribute("method", `post`);
+            actionForm.submit();
+        },false);
+
+     </script>
+     <!-- javaScripit end -->
+    
+</body>
+</html>

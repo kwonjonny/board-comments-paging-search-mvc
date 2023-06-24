@@ -7,7 +7,7 @@
 
 
 <!-- BoardMapper id = "listBoard" -->
-<select id="listBoard" parameterType="com.board.mvc.dto.BoardListDTO" resultType="com.board.mvc.dto.BoardListDTO">
+<select id="listBoard" parameterType="com.board.mvc.dto.board.BoardListDTO" resultType="com.board.mvc.dto.board.BoardListDTO">
     SELECT * FROM tbl_board
     WHERE tno > 0 
          <if test="searchType != null and keyword != null">
@@ -31,14 +31,14 @@
 
 
 <!-- BoardMapper id = "readBoard" -->
-<select id="readBoard" parameterType="long" resultType="boardDTO">
+<select id="readBoard" parameterType="long" resultType="com.board.mvc.dto.board.BoardDTO">
     SELECT * FROM tbl_board
     WHERE tno = #{tno}
 </select>
 
 
 <!-- BoardMapper id = "createBoard" -->
-<insert id="createBoard" parameterType="BoardCreateDTO">
+<insert id="createBoard" parameterType="com.board.mvc.dto.board.BoardCreateDTO">
     INSERT INTO tbl_board (title, content, writer)
     VALUES(#{title}, #{content}, #{writer})
 
@@ -57,7 +57,7 @@
 
 
 <!-- BoardMapepr id = "updateBoard" -->
-<update id="updateBoard" parameterType="BoardUpdateDTO">
+<update id="updateBoard" parameterType="com.board.mvc.dto.board.BoardUpdateDTO">
     UPDATE tbl_board SET title = #{title} , content = #{content},
     writer = #{writer} , updateDate = now()
     WHERE tno = #{tno}

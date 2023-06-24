@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout.html}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Board Read Page</title>
+</head>
+<body>
+
+    <div layout:fragment="content">
+        <h1>Board Read Page</h1>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <form class="form-horizontal actionForm" method="get" action="/board/read">
+                                    
+                                    <!-- tno satrt -->
+                                    <div class="form-group row">
+                                        <label for="tno" class="col-sm-3 text-end control-label col-form-label">Tno</label>
+                                        <div class="col-sm-9">
+                                        <input type="text" class="form-control" name="tno" id="tno" th:value="${boardDTO.tno}" readonly/>
+                                        </div>
+                                    </div>
+                                    <!-- tno end -->
+
+                                    <!-- title start -->
+                                    <div class="form-group row">
+                                        <label for="Title" class="col-sm-3 text-end control-label col-form-label">Title</label>
+                                        <div class="col-sm-9">
+                                        <input type="text" class="form-control" name="title" id="title" th:value="${boardDTO.title}" readonly/>
+                                        </div>
+                                    </div>
+                                    <!-- title end -->
+
+                                    <!-- writer start -->
+                                    <div class="form-group row">
+                                        <label for="writer" class="col-sm-3 text-end control-label col-form-label">Writer</label>
+                                        <div class="col-sm-9">
+                                        <input type="text" class="form-control" name="writer" id="writer" th:value="${boardDTO.writer}" readonly/>
+                                        </div>
+                                    </div>
+                                    <!-- writer end -->
+
+                                    <!-- registDate start -->
+                                    <div class="form-group row">
+                                        <label for="registDate" class="col-sm-3 text-end control-label col-form-label">RegistDate</label>
+                                        <div class="col-sm-9">
+                                        <input type="text" class="form-control" name="registDate" id="registDate" th:value="${boardDTO.registDate}"readonly/>
+                                        </div>
+                                    </div>
+                                    <!-- registDate end -->
+
+                                    <!-- updateDate start -->
+                                    <div class="form-group row">
+                                        <label for="modfiyDate" class="col-sm-3 text-end control-label col-form-label">UpdateDate</label>
+                                        <div class="col-sm-9">
+                                        <input type="text" class="form-control" name="modfiyDate" id="modfyDate" th:value="${boardDTO.updateDate}" readonly/>
+                                        </div>
+                                    </div>
+                                    <!-- updateDate end -->
+
+                                    <!-- content start -->
+                                    <div class="form-group row">
+                                        <label for="content" class="col-sm-3 text-end control-label col-form-label">Content</label>
+                                        <div class="col-sm-9">
+                                        <textarea class="form-control" name="content" id="content" th:text="${boardDTO.content}" readonly></textarea>
+                                        </div>
+                                    </div>
+                                    <!-- content end-->
+
+                                     <!-- 수정, 삭제, 목록 버튼 start -->
+                                    <div class="border-top">
+                                        <div class="card-body">
+                                        <button type="button" class="btn btn-primary updateButton">게시글 수정 page</button>
+
+                                        <button type="button" class="btn btn-primary deleteButton">게시글 삭제 submit</button>
+
+                                        <button type="button" class="btn btn-primary listButton">return list page</button>
+                                        </div>
+                                    </div>
+                                    <!-- 수정, 삭제, 목록 버튼 end -->
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script layout:fragment ="script" th:inline = "javascript">
+
+
+        const actionForm = document.querySelector(".actionForm");
+        const tno = [[${boardDTO.tno}]]
+
+        const actionUpdate = document.querySelector(".updateButton");
+        actionUpdate.addEventListener("click", (e) => {
+            e.preventDefault();
+            window.location.href = `/board/update/${tno}`;
+        },false);
+
+        const actionDelete = document.querySelector(".deleteButton");
+        actionDelete.addEventListener("click", (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+
+            actionForm.setAttribute("action", `/board/delete/${tno}`);
+            actionForm.setAttribute("method", `post`);
+            actionForm.submit();
+        }, false);
+
+        const actionList = document.querySelector(".listButton");
+        actionList.addEventListener("click", (e) => {
+            e.preventDefault();
+            window.location.href = `/board/list`;
+        }, false);
+
+
+
+        </script>
+
+    
+</body>
+</html>
