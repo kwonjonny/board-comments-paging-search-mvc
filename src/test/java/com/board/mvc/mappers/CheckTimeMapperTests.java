@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.board.board.mappers.CheckTimeMapper;
+import com.board.mvc.mappers.CheckTimeMapper;
 
 import lombok.extern.log4j.Log4j2;
 

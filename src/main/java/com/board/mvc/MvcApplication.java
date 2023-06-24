@@ -6,9 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@MapperScan(basePackages = "com.board.board.**.mappers")
-@ComponentScan(basePackages = "com.board.board.**.service")
-@ComponentScan(basePackages = "com.board.board.**.controller")
+@MapperScan(basePackages = "com.board.mvc.**.mappers")
 public class MvcApplication {
 
 	public static void main(String[] args) {

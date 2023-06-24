@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.board.mvc.service.BoardServiceTests" tests="5" skipped="0" failures="0" errors="0" timestamp="2023-06-24T10:41:26" hostname="gwon-ui-MacBookAir.local" time="0.693">
+  <properties/>
+  <testcase name="생성 게시판 서비스 테스트" classname="com.board.mvc.service.BoardServiceTests" time="0.643"/>
+  <testcase name="리스트 게시판 서비스 테스트" classname="com.board.mvc.service.BoardServiceTests" time="0.022"/>
+  <testcase name="삭제 게시판 서비스 테스트" classname="com.board.mvc.service.BoardServiceTests" time="0.009"/>
+  <testcase name="조회 게시판 서비스 테스트" classname="com.board.mvc.service.BoardServiceTests" time="0.008"/>
+  <testcase name="업데이트 게시판 서비스 테스트" classname="com.board.mvc.service.BoardServiceTests" time="0.009"/>
+  <system-out><![CDATA[19:41:25.533 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.board.mvc.service.BoardServiceTests]: BoardServiceTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+19:41:25.586 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.board.mvc.MvcApplication for test class com.board.mvc.service.BoardServiceTests
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.1.0)
+
+2023-06-24T19:41:25.795+09:00  INFO 14436 --- [    Test worker] c.board.mvc.service.BoardServiceTests    : Starting BoardServiceTests using Java 19 with PID 14436 (started by gwonseongjun in /Users/gwonseongjun/Documents/GitHub/boardReplyMvc)
+2023-06-24T19:41:25.796+09:00  INFO 14436 --- [    Test worker] c.board.mvc.service.BoardServiceTests    : No active profile set, falling back to 1 default profile: "default"
+2023-06-24T19:41:26.192+09:00 DEBUG 14436 --- [    Test worker] o.m.s.mapper.ClassPathMapperScanner      : Ignored because not a concrete top-level class: file [/Users/gwonseongjun/Documents/GitHub/boardReplyMvc/build/classes/java/test/com/board/mvc/mappers/BoardMapperTests.class]
+2023-06-24T19:41:26.193+09:00 DEBUG 14436 --- [    Test worker] o.m.s.mapper.ClassPathMapperScanner      : Ignored because not a concrete top-level class: file [/Users/gwonseongjun/Documents/GitHub/boardReplyMvc/build/classes/java/test/com/board/mvc/mappers/CheckTimeMapperTests.class]
+2023-06-24T19:41:26.193+09:00 DEBUG 14436 --- [    Test worker] o.m.s.mapper.ClassPathMapperScanner      : Identified candidate component class: file [/Users/gwonseongjun/Documents/GitHub/boardReplyMvc/build/classes/java/main/com/board/mvc/mappers/BoardMapper.class]
+2023-06-24T19:41:26.193+09:00 DEBUG 14436 --- [    Test worker] o.m.s.mapper.ClassPathMapperScanner      : Identified candidate component class: file [/Users/gwonseongjun/Documents/GitHub/boardReplyMvc/build/classes/java/main/com/board/mvc/mappers/CheckTimeMapper.class]
+2023-06-24T19:41:26.193+09:00 DEBUG 14436 --- [    Test worker] o.m.s.mapper.ClassPathMapperScanner      : Creating MapperFactoryBean with name 'boardMapper' and 'com.board.mvc.mappers.BoardMapper' mapperInterface
+2023-06-24T19:41:26.195+09:00 DEBUG 14436 --- [    Test worker] o.m.s.mapper.ClassPathMapperScanner      : Enabling autowire by type for MapperFactoryBean with name 'boardMapper'.
+2023-06-24T19:41:26.195+09:00 DEBUG 14436 --- [    Test worker] o.m.s.mapper.ClassPathMapperScanner      : Creating MapperFactoryBean with name 'checkTimeMapper' and 'com.board.mvc.mappers.CheckTimeMapper' mapperInterface
+2023-06-24T19:41:26.195+09:00 DEBUG 14436 --- [    Test worker] o.m.s.mapper.ClassPathMapperScanner      : Enabling autowire by type for MapperFactoryBean with name 'checkTimeMapper'.
+2023-06-24T19:41:26.405+09:00 DEBUG 14436 --- [    Test worker] o.mybatis.spring.SqlSessionFactoryBean   : Parsed mapper file: 'file [/Users/gwonseongjun/Documents/GitHub/boardReplyMvc/build/resources/main/mappers/BoardMapper.xml]'
+2023-06-24T19:41:26.410+09:00 DEBUG 14436 --- [    Test worker] o.mybatis.spring.SqlSessionFactoryBean   : Parsed mapper file: 'file [/Users/gwonseongjun/Documents/GitHub/boardReplyMvc/build/resources/main/mappers/CheckTimeMapper.xml]'
+2023-06-24T19:41:26.710+09:00  INFO 14436 --- [    Test worker] c.board.mvc.service.BoardServiceTests    : Started BoardServiceTests in 1.039 seconds (process running for 1.612)
+2023-06-24T19:41:26.724+09:00  INFO 14436 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-06-24T19:41:26.915+09:00  INFO 14436 --- [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@24fc2c80
+2023-06-24T19:41:26.916+09:00  INFO 14436 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-06-24T19:41:27.326+09:00  INFO 14436 --- [    Test worker] c.board.mvc.service.BoardServiceTests    : ========== Start Create Board Service Test
+2023-06-24T19:41:27.330+09:00 DEBUG 14436 --- [    Test worker] org.mybatis.spring.SqlSessionUtils       : Creating a new SqlSession
+2023-06-24T19:41:27.331+09:00 DEBUG 14436 --- [    Test worker] org.mybatis.spring.SqlSessionUtils       : Registering transaction synchronization for SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@10ad95cd]
+2023-06-24T19:41:27.337+09:00 DEBUG 14436 --- [    Test worker] o.m.s.t.SpringManagedTransaction         : JDBC Connection [HikariProxyConnection@871550850 wrapping com.mysql.cj.jdbc.ConnectionImpl@24fc2c80] will be managed by Spring
+2023-06-24T19:41:27.353+09:00 DEBUG 14436 --- [    Test worker] org.mybatis.spring.SqlSessionUtils       : Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@10ad95cd]
+2023-06-24T19:41:27.355+09:00  INFO 14436 --- [    Test worker] c.board.mvc.service.BoardServiceTests    : ========== End Create Board Service Test
+2023-06-24T19:41:27.357+09:00 DEBUG 14436 --- [    Test worker] org.mybatis.spring.SqlSessionUtils       : Transaction synchronization deregistering SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@10ad95cd]
+2023-06-24T19:41:27.357+09:00 DEBUG 14436 --- [    Test worker] org.mybatis.spring.SqlSessionUtils       : Transaction synchronization closing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@10ad95cd]
+2023-06-24T19:41:27.367+09:00  INFO 14436 --- [    Test worker] c.board.mvc.service.BoardServiceTests    : ========== Start Board Service list =========
+2023-06-24T19:41:27.367+09:00 DEBUG 14436 --- [    Test worker] org.mybatis.spring.SqlSessionUtils       : Creating a new SqlSession
+2023-06-24T19:41:27.368+09:00 DEBUG 14436 --- [    Test worker] org.mybatis.spring.SqlSessionUtils       : Registering transaction synchronization for SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6da9541c]
+2023-06-24T19:41:27.376+09:00 DEBUG 14436 --- [    Test worker] o.m.s.t.SpringManagedTransaction         : JDBC Connection [HikariProxyConnection@448763162 wrapping com.mysql.cj.jdbc.ConnectionImpl@24fc2c80] will be managed by Spring
+2023-06-24T19:41:27.381+09:00 DEBUG 14436 --- [    Test worker] org.mybatis.spring.SqlSessionUtils       : Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6da9541c]
+2023-06-24T19:41:27.381+09:00 DEBUG 14436 --- [    Test worker] org.mybatis.spring.SqlSessionUtils       : Fetched SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6da9541c] from current transaction
+2023-06-24T19:41:27.383+09:00 DEBUG 14436 --- [    Test worker] org.mybatis.spring.SqlSessionUtils       : Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6da9541c]
+2023-06-24T19:41:27.384+09:00  INFO 14436 --- [    Test worker] c.board.mvc.service.BoardServiceTests    : com.board.mvc.dto.page.PageResponseDTO@3c20e9d6
+2023-06-24T19:41:27.384+09:00  INFO 14436 --- [    Test worker] c.board.mvc.service.BoardServiceTests    : ========== End Board Service List ==========
+2023-06-24T19:41:27.386+09:00 DEBUG 14436 --- [    Test worker] org.mybatis.spring.SqlSessionUtils       : Transaction synchronization deregistering SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6da9541c]
+2023-06-24T19:41:27.386+09:00 DEBUG 14436 --- [    Test worker] org.mybatis.spring.SqlSessionUtils       : Transaction synchronization closing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6da9541c]
+2023-06-24T19:41:27.389+09:00  INFO 14436 --- [    Test worker] c.board.mvc.service.BoardServiceTests    : ========== Start Delete Board Service Test ==========
+2023-06-24T19:41:27.390+09:00 DEBUG 14436 --- [    Test worker] org.mybatis.spring.SqlSessionUtils       : Creating a new SqlSession
+2023-06-24T19:41:27.391+09:00 DEBUG 14436 --- [    Test worker] org.mybatis.spring.SqlSessionUtils       : Registering transaction synchronization for SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@152035eb]
+2023-06-24T19:41:27.391+09:00 DEBUG 14436 --- [    Test worker] o.m.s.t.SpringManagedTransaction         : JDBC Connection [HikariProxyConnection@906341142 wrapping com.mysql.cj.jdbc.ConnectionImpl@24fc2c80] will be managed by Spring
+2023-06-24T19:41:27.392+09:00 DEBUG 14436 --- [    Test worker] org.mybatis.spring.SqlSessionUtils       : Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@152035eb]
+2023-06-24T19:41:27.392+09:00 DEBUG 14436 --- [    Test worker] org.mybatis.spring.SqlSessionUtils       : Fetched SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@152035eb] from current transaction
+2023-06-24T19:41:27.393+09:00 DEBUG 14436 --- [    Test worker] org.mybatis.spring.SqlSessionUtils       : Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@152035eb]
+2023-06-24T19:41:27.394+09:00  INFO 14436 --- [    Test worker] c.board.mvc.service.BoardServiceTests    : ========== End Read Board Service Test ==========
+2023-06-24T19:41:27.394+09:00 DEBUG 14436 --- [    Test worker] org.mybatis.spring.SqlSessionUtils       : Transaction synchronization deregistering SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@152035eb]
+2023-06-24T19:41:27.395+09:00 DEBUG 14436 --- [    Test worker] org.mybatis.spring.SqlSessionUtils       : Transaction synchronization closing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@152035eb]
+2023-06-24T19:41:27.398+09:00  INFO 14436 --- [    Test worker] c.board.mvc.service.BoardServiceTests    : ========== Start Read Board Service Test
+2023-06-24T19:41:27.398+09:00 DEBUG 14436 --- [    Test worker] org.mybatis.spring.SqlSessionUtils       : Creating a new SqlSession
+2023-06-24T19:41:27.398+09:00 DEBUG 14436 --- [    Test worker] org.mybatis.spring.SqlSessionUtils       : Registering transaction synchronization for SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@d02c00]
+2023-06-24T19:41:27.398+09:00 DEBUG 14436 --- [    Test worker] o.m.s.t.SpringManagedTransaction         : JDBC Connection [HikariProxyConnection@702531215 wrapping com.mysql.cj.jdbc.ConnectionImpl@24fc2c80] will be managed by Spring
+2023-06-24T19:41:27.400+09:00 DEBUG 14436 --- [    Test worker] org.mybatis.spring.SqlSessionUtils       : Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@d02c00]
+2023-06-24T19:41:27.401+09:00  INFO 14436 --- [    Test worker] c.board.mvc.service.BoardServiceTests    : BoardDTO(tno=1, title=TestTitle11, content=TestContent11, writer=user11, registDate=2023-07-02, updateDate=2023-06-28)
+2023-06-24T19:41:27.401+09:00  INFO 14436 --- [    Test worker] c.board.mvc.service.BoardServiceTests    : ========== End Read Board Service Test ==========
+2023-06-24T19:41:27.402+09:00 DEBUG 14436 --- [    Test worker] org.mybatis.spring.SqlSessionUtils       : Transaction synchronization deregistering SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@d02c00]
+2023-06-24T19:41:27.403+09:00 DEBUG 14436 --- [    Test worker] org.mybatis.spring.SqlSessionUtils       : Transaction synchronization closing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@d02c00]
+2023-06-24T19:41:27.406+09:00  INFO 14436 --- [    Test worker] c.board.mvc.service.BoardServiceTests    : ========== Start Update Board Service Test ==========
+2023-06-24T19:41:27.406+09:00 DEBUG 14436 --- [    Test worker] org.mybatis.spring.SqlSessionUtils       : Creating a new SqlSession
+2023-06-24T19:41:27.406+09:00 DEBUG 14436 --- [    Test worker] org.mybatis.spring.SqlSessionUtils       : Registering transaction synchronization for SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@3151277f]
+2023-06-24T19:41:27.406+09:00 DEBUG 14436 --- [    Test worker] o.m.s.t.SpringManagedTransaction         : JDBC Connection [HikariProxyConnection@1743939261 wrapping com.mysql.cj.jdbc.ConnectionImpl@24fc2c80] will be managed by Spring
+2023-06-24T19:41:27.408+09:00 DEBUG 14436 --- [    Test worker] org.mybatis.spring.SqlSessionUtils       : Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@3151277f]
+2023-06-24T19:41:27.408+09:00 DEBUG 14436 --- [    Test worker] org.mybatis.spring.SqlSessionUtils       : Fetched SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@3151277f] from current transaction
+2023-06-24T19:41:27.409+09:00 DEBUG 14436 --- [    Test worker] org.mybatis.spring.SqlSessionUtils       : Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@3151277f]
+2023-06-24T19:41:27.410+09:00  INFO 14436 --- [    Test worker] c.board.mvc.service.BoardServiceTests    : ========== End Update Board Service Test ==========
+2023-06-24T19:41:27.411+09:00 DEBUG 14436 --- [    Test worker] org.mybatis.spring.SqlSessionUtils       : Transaction synchronization deregistering SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@3151277f]
+2023-06-24T19:41:27.411+09:00 DEBUG 14436 --- [    Test worker] org.mybatis.spring.SqlSessionUtils       : Transaction synchronization closing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@3151277f]
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

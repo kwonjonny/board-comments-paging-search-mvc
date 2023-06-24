@@ -4,11 +4,11 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <!-- MyBatis Connection Check -->
-<mapper namespace = "com.board.board.mappers.CheckTimeMapper">
+<mapper namespace = "com.board.mvc.mappers.CheckTimeMapper">
 
     <!-- CheckTimeMapper id = "getTime" -->
     <select id="getTime">
         select now()
     </select>
-    
+
 </mapper>

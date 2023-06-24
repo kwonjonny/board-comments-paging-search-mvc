@@ -12,13 +12,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.board.board.dto.board.BoardCreateDTO;
-import com.board.board.dto.board.BoardDTO;
-import com.board.board.dto.board.BoardListDTO;
-import com.board.board.dto.board.BoardUpdateDTO;
-import com.board.board.dto.page.PageRequestDTO;
-import com.board.board.dto.page.PageResponseDTO;
-import com.board.board.service.BoardService;
+import com.board.mvc.dto.board.BoardCreateDTO;
+import com.board.mvc.dto.board.BoardDTO;
+import com.board.mvc.dto.board.BoardListDTO;
+import com.board.mvc.dto.board.BoardUpdateDTO;
+import com.board.mvc.dto.page.PageRequestDTO;
+import com.board.mvc.dto.page.PageResponseDTO;
+import com.board.mvc.service.BoardService;
 
 import lombok.extern.log4j.Log4j2;
 
