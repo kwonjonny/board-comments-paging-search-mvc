@@ -21,7 +21,7 @@ import com.board.mvc.dto.page.PageResponseDTO;
 
 import lombok.extern.log4j.Log4j2;
 
-// 게시판 서비스 테스트 클래스 
+// Board Service Test Class 
 @Log4j2
 @SpringBootTest
 public class BoardServiceTests {

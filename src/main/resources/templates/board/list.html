@@ -27,20 +27,21 @@
           </div>
             <div class="card-body">
     
-                   <!-- searchType start -->
-                   <div class="input-group mb-3">
-                    <button type="button" class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
-                      <span class="visually-hidden">Toggle Dropdown</span>
-                    </button>
-                    <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" href="#">작성자</a></li>
-                      <li><a class="dropdown-item" href="#">제목</a></li>
-                      <li><a class="dropdown-item" href="#">내용</a></li>
-                    </ul>
-                    <input type="text" class="form-control" aria-label="Text input with segmented dropdown button">
-                    <button type="button" class="btn btn-outline-secondary">Search</button>
-                  </div>
-                  <!-- searchType end -->
+                  <!-- searchType start -->
+                  <form action="/board/list" method="get" class="input-group mb-3 searchAction" id="searchForm">
+                    <div class="input-group-prepend">
+                        <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Choose Type</button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#" data-searchtype="writer">Writer</a>
+                            <a class="dropdown-item" href="#" data-searchtype="title">Title</a>
+                            <a class="dropdown-item" href="#" data-searchtype="content">Content</a>
+                        </div>
+                    </div>
+                    <input type="hidden" name="searchType" id="searchType">
+                    <input type="text" class="form-control" name="keyword" aria-label="Text input with segmented dropdown button">
+                    <button type="submit" class="btn btn-outline-secondary">Search</button>
+                </form>
+                <!-- searchType end -->
     
             <table class="table table-bordered boardTable">
               <thead>

@@ -21,8 +21,8 @@ public interface ReplyService {
     PageResponseDTO<ReplyDTO> listReply(@Param("page") PageRequestDTO pageRequestDTO, @Param("tno") Long tno);
 
     // Delete Reply Service
-    void deleteReply(Long rno);
+    int deleteReply(Long rno);
 
     // Update Reply Service 
-    void updateReply(ReplyUpdateDTO replyUpdateDTO);
+    int updateReply(ReplyUpdateDTO replyUpdateDTO);
 }

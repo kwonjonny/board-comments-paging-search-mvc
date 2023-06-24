@@ -12,11 +12,10 @@ import com.board.mvc.dto.board.BoardCreateDTO;
 import com.board.mvc.dto.board.BoardDTO;
 import com.board.mvc.dto.board.BoardUpdateDTO;
 import com.board.mvc.dto.page.PageRequestDTO;
-import com.board.mvc.mappers.BoardMapper;
 
 import lombok.extern.log4j.Log4j2;
 
-// 게시판 매퍼 테스트 클래스 
+// Board Mapper Test Class 
 @Log4j2
 @SpringBootTest
 public class BoardMapperTests {

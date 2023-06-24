@@ -17,6 +17,7 @@ import com.board.mvc.dto.reply.ReplyUpdateDTO;
 
 import lombok.extern.log4j.Log4j2;
 
+// Board Reply, ReplyChild Service Test Class 
 @Log4j2
 @SpringBootTest
 public class ReplyServiceTests {
@@ -35,11 +36,16 @@ public class ReplyServiceTests {
     private static final Long TEST_TNO = 1L;
     private static final Long TEST_RNO = 23L;
 
+    // BeforeEach 사용을 위한 ReplyCreatDTO, ReplyUpdateDTO Set Up
     private ReplyCreateDTO replyCreateDTO;
     private ReplyCreateDTO replyCreateChildDTO;
     private ReplyUpdateDTO replyUpdateDTO;
     private ReplyUpdateDTO replyUpdateChildDTO;
 
+    // Reply Create Serivce Child Set Up
+    // Reply Create Serivce Set Up 
+    // Reply Update Service Child Set Up
+    // Reply Update Service Set Up
     @BeforeEach
     public void setUp() {
         replyCreateDTO = ReplyCreateDTO.builder()

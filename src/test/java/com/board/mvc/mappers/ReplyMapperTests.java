@@ -17,7 +17,7 @@ import com.board.mvc.dto.reply.ReplyUpdateDTO;
 
 import lombok.extern.log4j.Log4j2;
 
-// 게시판의 댓글 대댓글 Mapper Test Class 
+// Board Reply ,ReplyChild Mapper Test 
 @Log4j2
 @SpringBootTest
 public class ReplyMapperTests {

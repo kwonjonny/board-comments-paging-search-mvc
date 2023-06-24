@@ -77,17 +77,17 @@ public class ReplyServiceImpl implements ReplyService {
     // Delete ReplySerivceImpl
     @Override
     @Transactional
-    public void deleteReply(Long rno) {
+    public int deleteReply(Long rno) {
        ReplyDTO replyDTO = replyMapper.readReply(rno);
        Long tno = replyDTO.getTno();
        replyMapper.deleteReply(rno);
-       replyMapper.decrementReplyCount(tno);
+       return replyMapper.decrementReplyCount(tno);
     }
 
     // Update ReplyServiceImpl
     @Override
     @Transactional
-    public void updateReply(ReplyUpdateDTO replyUpdateDTO) {
-        replyMapper.updateReply(replyUpdateDTO);
+    public int updateReply(ReplyUpdateDTO replyUpdateDTO) {
+        return replyMapper.updateReply(replyUpdateDTO);
     }
 }

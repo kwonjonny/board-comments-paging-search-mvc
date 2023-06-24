@@ -9,7 +9,7 @@ import com.board.mvc.mappers.CheckTimeMapper;
 
 import lombok.extern.log4j.Log4j2;
 
-// 마이바티스 Connection Check 클래스 
+// MyBatis Connection Check 클래스 
 @Log4j2
 @SpringBootTest
 public class CheckTimeMapperTests {
