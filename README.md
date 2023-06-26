@@ -91,7 +91,7 @@
 | updateDate  | TIMESTAMP           | Board 의 업데이트 날짜                        |
 | replyCnt | INT | Board 의 댓글 개수 |
 
-### Reply 테이블 ('tbl_reply')
+### Reply 테이블 (`tbl_reply`)
 | 컬럼명 | 데이터 타입 | 설명 |
 | --- | --- | --- |
 | rno | INT | 답글 항목의 고유 식별자 (Primary Key, 자동 증가) |
