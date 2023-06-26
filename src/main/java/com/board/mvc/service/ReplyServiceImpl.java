@@ -79,9 +79,12 @@ public class ReplyServiceImpl implements ReplyService {
     @Transactional
     public int deleteReply(Long rno) {
        ReplyDTO replyDTO = replyMapper.readReply(rno);
-       Long tno = replyDTO.getTno();
-       replyMapper.deleteReply(rno);
-       return replyMapper.decrementReplyCount(tno);
+        if (replyDTO == null) {
+            throw new RuntimeException("Reply not found for rno: " + rno);
+        }
+        Long tno = replyDTO.getTno();
+        replyMapper.deleteReply(rno);
+        return replyMapper.decrementReplyCount(tno);
     }
 
     // Update ReplyServiceImpl

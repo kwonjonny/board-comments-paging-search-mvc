@@ -43,7 +43,7 @@ public class ReplyController {
     }
 
     // Create Reply & Create Reply Child 
-    @PostMapping("{tno}/create")
+    @PostMapping("{tno}/new")
     public Map<String, Long> createReply(@PathVariable("tno") Long tno, @RequestBody ReplyCreateDTO replyCreateDTO) {
         log.info("RestController : ReplyCreate");
         replyCreateDTO.setTno(tno);

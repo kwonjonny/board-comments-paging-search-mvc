@@ -90,6 +90,79 @@
                     </div>
                 </div>
             </div>
+
+              <!-- 모달창 start -->
+              <div class="replyModal modal" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title">Modal title</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    
+                    <div class="modal-body">
+                        <input type="text" name ="rno" readonly>
+                        <input type="text" name ="gno" readonly>
+                        <input type="text" name="reply" value="AAAA">
+                        <input type="text" name="replyer" value= "BBB">
+    
+                    </div>
+    
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-danger btnDelete">DELETE</button>
+                      <button type="button" class="btn btn-primary btnModify">MODIFY</button>
+                      <button type="button" class="btn btn-primary btnReturnReply">답글 달기</button>
+                      <button type="button" class="btn btn-secondary modalClose" data-dismiss="modal">ClOSE</button>
+                    </div>
+                  </div>
+                </div>
+            </div>
+            <!-- 모달창 end -->
+
+
+              <!-- 댓글 입력창 start -->
+              <div class="card-body">
+                <form class="form-horizontal replyAdd">
+                  <div class="row">
+
+                    <div class="form-group col-sm-8">
+                      <input class="form-control input-sm" name="registReply" id="newReplyText" type="text" placeholder="댓글 입력...">
+                    </div>
+
+                    <div class="form-group col-sm-2">
+                      <input class="form-control input-sm" name="registReplyer" id="newReplyWriter" type="text" placeholder="작성자">
+                    </div>
+
+                    <div class="form-group col-sm-2" data-tno=${tno}>
+                      <button type="button" class="btn btn-primary btn-sm btn-block replyAddBtn">
+                      <i class="fa fa-save"></i> 댓글 달기</button>
+                    </div>
+
+                  </div>	
+                </form>	
+              </div>
+              <!-- 댓글 입력창 end-->
+
+
+        <!-- 댓글 list start -->
+         <div>
+            <ul class="listUl">
+              
+            </ul>
+          </div>
+         <!-- 댓글 list end -->
+
+
+
+         <!-- ajax start -->
+          <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+          <!-- ajax end -->
+          
+
+          <script src="/js/reply.js"></script>
+
         </div>
 
         <script layout:fragment ="script" th:inline = "javascript">
@@ -97,6 +170,7 @@
 
         const actionForm = document.querySelector(".actionForm");
         const tno = [[${boardDTO.tno}]]
+        console.log("tno 의 [[${boardDTO.tno}]] 값 확인: ", tno)
 
         const actionUpdate = document.querySelector(".updateButton");
         actionUpdate.addEventListener("click", (e) => {
@@ -120,6 +194,166 @@
             window.location.href = `/board/list`;
         }, false);
 
+
+
+        const link = `http://localhost:8084/replies/`
+         /////////////////////////////////////////////////////////////////
+        // 여기서 부터 댓글 , 대댓글                                     //
+        /////////////////////////////////////////////////////////////////
+
+        // reply list 
+        const listUl = document.querySelector(".listUl");
+
+        // modal의 Html input name data 를 가져옴  
+        const raplyAdd = document.querySelector(".replyAdd")
+        const modalGno = document.querySelector("input[name='gno']")
+        const modalRno = document.querySelector("input[name='rno']")
+        const modalReply = document.querySelector("input[name='reply']")
+        const modalReplyer = document.querySelector("input[name='replyer']")
+
+        // 댓글의 Html input name data 를 가져옴 
+        const getReply = document.querySelector("input[name='registReply']")
+        const getReplyer = document.querySelector("input[name='registReplyer']")
+
+
+        // 댓글 이밴트 (버튼) 
+        listUl.addEventListener("click", (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          
+          replyModal.show()
+
+          const target = e.target;
+          const targetName = target.tagName;
+          if(targetName === 'BUTTON'){
+            const liObj = target.closest("li");
+            modalGno.value = liObj.getAttribute("data-gno");
+            modalRno.value = liObj.getAttribute("data-rno");
+            modalReply.value = liObj.getAttribute("data-reply");
+            modalReplyer.value = liObj.getAttribute("data-replyer");
+          }
+        }, false)
+
+
+       // 댓글 이벤트 (버튼)
+        raplyAdd.addEventListener("click", (e) => {
+        e.preventDefault();
+
+        const target = e.target;
+        const tag = target.tagName;
+
+        if (tag === "BUTTON") {
+            const list = {
+            tno: tno,
+            reply: getReply.value,
+            replyer: getReplyer.value
+            };
+            console.log("list의 데이터 확인:", list);
+
+            registReply(list).then((value) => {
+            getReply.value = "";
+            getReplyer.value = "";
+            loadReply(1, true);
+            });
+        }
+        });
+        
+        // reply list 불러오기 
+        const loadReply = async(page, goEnd=false) => {
+
+          const data = await loadList(page)
+
+          console.log("data는 이거임: " , data)
+
+          const {list, total} = data
+
+          console.log("list, total data: " ,data)
+
+          let str = ""
+
+          for (let i = 0; i < list.length; i++) {
+        const { rno, reply, replyer, replyDate, modifyDate, gno, step } = list[i];
+
+        if (step === 1) {
+            str += `<li data-rno=${rno} data-gno=${gno} data-reply=${reply} data-replyer=${replyer} data-tno=${tno} style="margin-left: 60px">
+            작성자 : ${replyer} | ${replyDate} <br> 내용 : ${reply}  
+            <button>답글</button>
+            <button>수정</button>
+            <button>삭제</button>
+            </li>
+            <hr>`;
+        } else {
+            str += `<li data-rno=${rno} data-gno=${gno} data-reply=${reply} data-replyer=${replyer} data-tno=${tno}>
+            작성자 : ${replyer} | ${replyDate} <br> 내용 : ${reply}  
+            <button>답글</button>
+            <button>수정</button>
+            <button>삭제</button>
+            </li>
+            <hr>`;
+        }
+        }
+          console.log(listUl)
+          listUl.innerHTML = str
+
+        }
+
+
+        // 모달 태그
+        const replyModal = new bootstrap.Modal(document.querySelector(".replyModal"))
+
+        document.querySelector(".modalClose").addEventListener("click", (e) => {
+          replyModal.hide();
+        })
+
+
+        // 댓글 이벤트 등록 delete  
+        document.querySelector(".btnDelete").addEventListener("click", () => {
+
+          deleteReply(modalRno.value).then(result => {
+
+            modalReply.value = '';
+            modalReplyer.value = '';
+
+            replyModal.hide();
+            loadReply(1, true);
+          })
+        })
+
+        // 댓글 이벤트 등록 modfiy  
+        document.querySelector(".btnModify").addEventListener("click", () => {
+          const list = 
+          {tno:tno,
+          gno:modalGno.value,
+          reply:modalReply.value,
+          replyer:modalReplyer.value,
+          rno:modalRno.value
+          }
+
+          modifyReply(list).then((value) => {
+
+            replyModal.hide();
+            loadReply(1, true)
+          });
+        })
+
+        // 답글달기 
+        document.querySelector(".btnReturnReply").addEventListener("click", () => {
+          const list = {
+                tno:tno,
+                reply:modalReply.value,
+                replyer:modalReplyer.value,
+                gno : modalGno.value
+              }
+              registReply(list).then((value) => {
+                replyModal.hide();
+
+                loadReply(1, true)
+              });
+            },false)
+      
+
+      // 댓글 목록 데이터 아래 위치
+      loadReply(1,true)
 
 
         </script>
