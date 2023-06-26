@@ -8,7 +8,7 @@
     <title>Board Read Page</title>
 </head>
 <body>
-
+  <!-- Fragment Content Start -->
     <div layout:fragment="content">
         <h1>Board Read Page</h1>
             <div class="container-fluid">
@@ -18,71 +18,69 @@
                             <div class="card-body">
                                 <form class="form-horizontal actionForm" method="get" action="/board/read">
                                     
-                                    <!-- tno satrt -->
+                                  <!-- tno satrt -->
                                     <div class="form-group row">
                                         <label for="tno" class="col-sm-3 text-end control-label col-form-label">Tno</label>
                                         <div class="col-sm-9">
                                         <input type="text" class="form-control" name="tno" id="tno" th:value="${boardDTO.tno}" readonly/>
                                         </div>
                                     </div>
-                                    <!-- tno end -->
+                                  <!-- tno end -->
 
-                                    <!-- title start -->
+                                  <!-- Title Start -->
                                     <div class="form-group row">
                                         <label for="Title" class="col-sm-3 text-end control-label col-form-label">Title</label>
                                         <div class="col-sm-9">
                                         <input type="text" class="form-control" name="title" id="title" th:value="${boardDTO.title}" readonly/>
                                         </div>
                                     </div>
-                                    <!-- title end -->
+                                  <!-- Title End -->
 
-                                    <!-- writer start -->
+                                  <!-- Writer Start -->
                                     <div class="form-group row">
                                         <label for="writer" class="col-sm-3 text-end control-label col-form-label">Writer</label>
                                         <div class="col-sm-9">
                                         <input type="text" class="form-control" name="writer" id="writer" th:value="${boardDTO.writer}" readonly/>
                                         </div>
                                     </div>
-                                    <!-- writer end -->
+                                  <!-- Writer End -->
 
-                                    <!-- registDate start -->
+                                  <!-- Regist Date Start -->
                                     <div class="form-group row">
                                         <label for="registDate" class="col-sm-3 text-end control-label col-form-label">RegistDate</label>
                                         <div class="col-sm-9">
                                         <input type="text" class="form-control" name="registDate" id="registDate" th:value="${boardDTO.registDate}"readonly/>
                                         </div>
                                     </div>
-                                    <!-- registDate end -->
+                                  <!-- Regist Date End -->
 
-                                    <!-- updateDate start -->
+                                  <!-- Update Date Start -->
                                     <div class="form-group row">
                                         <label for="modfiyDate" class="col-sm-3 text-end control-label col-form-label">UpdateDate</label>
                                         <div class="col-sm-9">
                                         <input type="text" class="form-control" name="modfiyDate" id="modfyDate" th:value="${boardDTO.updateDate}" readonly/>
                                         </div>
                                     </div>
-                                    <!-- updateDate end -->
+                                  <!-- Update Date End -->
 
-                                    <!-- content start -->
+                                  <!-- Content Start -->
                                     <div class="form-group row">
                                         <label for="content" class="col-sm-3 text-end control-label col-form-label">Content</label>
                                         <div class="col-sm-9">
                                         <textarea class="form-control" name="content" id="content" th:text="${boardDTO.content}" readonly></textarea>
                                         </div>
                                     </div>
-                                    <!-- content end-->
+                                  <!-- Content End-->
 
-                                     <!-- 수정, 삭제, 목록 버튼 start -->
+                                  <!-- 수정, 삭제, 목록 버튼 start -->
                                     <div class="border-top">
                                         <div class="card-body">
                                         <button type="button" class="btn btn-primary updateButton">게시글 수정 page</button>
-
                                         <button type="button" class="btn btn-primary deleteButton">게시글 삭제 submit</button>
-
                                         <button type="button" class="btn btn-primary listButton">return list page</button>
                                         </div>
                                     </div>
-                                    <!-- 수정, 삭제, 목록 버튼 end -->
+                                  <!-- 수정, 삭제, 목록 버튼 end -->
 
                                 </form>
                             </div>
@@ -90,8 +88,7 @@
                     </div>
                 </div>
             </div>
-
-              <!-- 모달창 start -->
+            <!-- Modal Start -->
               <div class="replyModal modal" tabindex="-1" role="dialog">
                 <div class="modal-dialog" role="document">
                   <div class="modal-content">
@@ -105,9 +102,8 @@
                     <div class="modal-body">
                         <input type="text" name ="rno" readonly>
                         <input type="text" name ="gno" readonly>
-                        <input type="text" name="reply" value="AAAA">
+                        <input type="text" name="reply" value="AAA">
                         <input type="text" name="replyer" value= "BBB">
-    
                     </div>
     
                     <div class="modal-footer">
@@ -119,10 +115,9 @@
                   </div>
                 </div>
             </div>
-            <!-- 모달창 end -->
+          <!-- Modal End -->
 
-
-              <!-- 댓글 입력창 start -->
+            <!-- Reply Add Start -->
               <div class="card-body">
                 <form class="form-horizontal replyAdd">
                   <div class="row">
@@ -143,41 +138,55 @@
                   </div>	
                 </form>	
               </div>
-              <!-- 댓글 입력창 end-->
+            <!-- Reply Add End-->
 
-
-        <!-- 댓글 list start -->
-         <div>
+         <!-- Reply List Start -->
+          <div>
             <ul class="listUl">
-              
             </ul>
           </div>
-         <!-- 댓글 list end -->
+         <!-- Reply List End -->
 
-
-
-         <!-- ajax start -->
+         <!-- Ajax Start -->
           <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-          <!-- ajax end -->
+         <!-- Ajax End -->
           
-
+         <!-- Reply Start -->
           <script src="/js/reply.js"></script>
+        <!-- Replt End -->
 
+        <!-- Update Modal Message Start -->
+         <div class="modal alertModal" tabindex="-1" role="dialog">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-body">[[${message}]]</div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+              </div>
+            </div>
+          </div>
         </div>
+      <!-- Update Modal Message End -->
 
-        <script layout:fragment ="script" th:inline = "javascript">
+  </div>
+<!-- Fragment Content End -->
 
-
+    <!-- JavaScript Start -->
+    <script layout:fragment ="script" th:inline = "javascript">
+        // actonForm 등록 
         const actionForm = document.querySelector(".actionForm");
+        // tno 의 값을 boardDTO.tno 를 통해 get 
         const tno = [[${boardDTO.tno}]]
-        console.log("tno 의 [[${boardDTO.tno}]] 값 확인: ", tno)
 
+        // Update Action Start 
         const actionUpdate = document.querySelector(".updateButton");
         actionUpdate.addEventListener("click", (e) => {
             e.preventDefault();
+            e.stopPropagation();
             window.location.href = `/board/update/${tno}`;
         },false);
 
+        // Delete Action Start 
         const actionDelete = document.querySelector(".deleteButton");
         actionDelete.addEventListener("click", (e) => {
             e.preventDefault();
@@ -188,41 +197,38 @@
             actionForm.submit();
         }, false);
 
+        // List Action Start 
         const actionList = document.querySelector(".listButton");
         actionList.addEventListener("click", (e) => {
             e.preventDefault();
+            e.stopPropagation();
             window.location.href = `/board/list`;
         }, false);
 
+        //////////////////////////////
+        // Reply & ReplyChild Start // 
+        //////////////////////////////
 
-
+        // RestController Action Link 
         const link = `http://localhost:8084/replies/`
-         /////////////////////////////////////////////////////////////////
-        // 여기서 부터 댓글 , 대댓글                                     //
-        /////////////////////////////////////////////////////////////////
-
-        // reply list 
+        // Reply And ReplyChild List 등록 
         const listUl = document.querySelector(".listUl");
 
-        // modal의 Html input name data 를 가져옴  
+        // modal input name data 등록  
         const raplyAdd = document.querySelector(".replyAdd")
         const modalGno = document.querySelector("input[name='gno']")
         const modalRno = document.querySelector("input[name='rno']")
         const modalReply = document.querySelector("input[name='reply']")
         const modalReplyer = document.querySelector("input[name='replyer']")
 
-        // 댓글의 Html input name data 를 가져옴 
+        // 댓글 창의 input name date 
         const getReply = document.querySelector("input[name='registReply']")
         const getReplyer = document.querySelector("input[name='registReplyer']")
-
 
         // 댓글 이밴트 (버튼) 
         listUl.addEventListener("click", (e) => {
           e.preventDefault();
-          e.stopPropagation();
-          
           replyModal.show()
-
           const target = e.target;
           const targetName = target.tagName;
           if(targetName === 'BUTTON'){
@@ -234,9 +240,8 @@
           }
         }, false)
 
-
-       // 댓글 이벤트 (버튼)
-        raplyAdd.addEventListener("click", (e) => {
+        // Reply Create Action Start 
+        raplyAdd.addEventListener(("click"), (e) => {
         e.preventDefault();
 
         const target = e.target;
@@ -255,58 +260,57 @@
             getReplyer.value = "";
             loadReply(1, true);
             });
-        }
-        });
+
+        }});
+        // Reply Create Action End 
         
-        // reply list 불러오기 
+        // Reply List Action Start 
         const loadReply = async(page, goEnd=false) => {
 
           const data = await loadList(page)
 
-          console.log("data는 이거임: " , data)
-
           const {list, total} = data
 
-          console.log("list, total data: " ,data)
-
           let str = ""
-
+        
+          // For 문을 통한 List Action 
           for (let i = 0; i < list.length; i++) {
-        const { rno, reply, replyer, replyDate, modifyDate, gno, step } = list[i];
+          const { rno, reply, replyer, replyDate, modifyDate, gno, step } = list[i];
 
-        if (step === 1) {
-            str += `<li data-rno=${rno} data-gno=${gno} data-reply=${reply} data-replyer=${replyer} data-tno=${tno} style="margin-left: 60px">
-            작성자 : ${replyer} | ${replyDate} <br> 내용 : ${reply}  
-            <button>답글</button>
-            <button>수정</button>
-            <button>삭제</button>
-            </li>
-            <hr>`;
-        } else {
-            str += `<li data-rno=${rno} data-gno=${gno} data-reply=${reply} data-replyer=${replyer} data-tno=${tno}>
-            작성자 : ${replyer} | ${replyDate} <br> 내용 : ${reply}  
-            <button>답글</button>
-            <button>수정</button>
-            <button>삭제</button>
-            </li>
-            <hr>`;
-        }
-        }
-          console.log(listUl)
-          listUl.innerHTML = str
+          // Reply Child List 
+          if (step === 1) {
+              str += `<li data-rno=${rno} data-gno=${gno} data-reply=${reply} data-replyer=${replyer} data-tno=${tno} style="margin-left: 60px">
+              작성자 : ${replyer} | ${replyDate} <br> 내용 : ${reply}  
+              <button>답글</button>
+              <button>수정</button>
+              <button>삭제</button>
+              </li>
+              <hr>`;
+          } else {
+            // Reply List 
+              str += `<li data-rno=${rno} data-gno=${gno} data-reply=${reply} data-replyer=${replyer} data-tno=${tno}>
+              작성자 : ${replyer} | ${replyDate} <br> 내용 : ${reply}  
+              <button>답글</button>
+              <button>수정</button>
+              <button>삭제</button>
+              </li>
+              <hr>`;
+          }}
+            listUl.innerHTML = str
+          }
+          // Reply List Action End
 
-        }
 
-
-        // 모달 태그
+        // Reply Modal Action Close Start 
         const replyModal = new bootstrap.Modal(document.querySelector(".replyModal"))
 
         document.querySelector(".modalClose").addEventListener("click", (e) => {
           replyModal.hide();
         })
+        // Reply Modal Action Close End 
 
 
-        // 댓글 이벤트 등록 delete  
+        // Reply Modal Action Delete Start 
         document.querySelector(".btnDelete").addEventListener("click", () => {
 
           deleteReply(modalRno.value).then(result => {
@@ -318,8 +322,9 @@
             loadReply(1, true);
           })
         })
+        // Reply Modal Action Delete End 
 
-        // 댓글 이벤트 등록 modfiy  
+        // Reply Modal Action Update Start 
         document.querySelector(".btnModify").addEventListener("click", () => {
           const list = 
           {tno:tno,
@@ -335,8 +340,9 @@
             loadReply(1, true)
           });
         })
+        // Reply Modal Action Update End
 
-        // 답글달기 
+        // RepltChild Modal Add Action Start 
         document.querySelector(".btnReturnReply").addEventListener("click", () => {
           const list = {
                 tno:tno,
@@ -350,14 +356,19 @@
                 loadReply(1, true)
               });
             },false)
-      
-
-      // 댓글 목록 데이터 아래 위치
-      loadReply(1,true)
-
-
-        </script>
-
+        // ReplyChild Modal Add Action End 
     
-</body>
+      // Reply & ReplyChild List Start 
+      loadReply(1,true)
+      // Reply & ReplyChild List end 
+
+    // Update Message Modal Start 
+      const alertModal = new bootstrap.Modal(document.querySelector(".alertModal"))
+      if([[${message}]] != null) {
+      alertModal.show()
+    }
+    // Update Message Modal End  
+
+    </script>
+  </body>
 </html>

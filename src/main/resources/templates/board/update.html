@@ -1,98 +1,106 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{layout/layout.html}">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/layout.html}">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Board Update Page</title>
 </head>
-<body>
 
+<body>
+    <!-- Fragment Content Start -->
     <div layout:fragment="content">
+        <h1>Board Update Page</h1>
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-body">
+
+                            <!-- Form Start -->
                             <form class="form-horizontal actionForm">
-                                
-                                <!-- tno satrt -->
+
+                                <!-- Tno Start -->
                                 <div class="form-group row">
                                     <label for="tno" class="col-sm-3 text-end control-label col-form-label">Tno</label>
                                     <div class="col-sm-9">
-                                    <input type="text" class="form-control" name="tno" id="tno" th:value="${boardDTO.tno}" readonly/>
+                                        <input type="text" class="form-control" name="tno" id="tno" th:value="${boardDTO.tno}" readonly/>
                                     </div>
                                 </div>
-                                <!-- tno end -->
+                                <!-- Tno End -->
 
-                                <!-- title start -->
+                                <!-- Title Start -->
                                 <div class="form-group row">
-                                    <label for="Title" class="col-sm-3 text-end control-label col-form-label">Title</label>
+                                    <label for="title" class="col-sm-3 text-end control-label col-form-label">Title</label>
                                     <div class="col-sm-9">
-                                    <input type="text" class="form-control" name="title" id="title" th:value="${boardDTO.title}"/>
+                                        <input type="text" class="form-control" name="title" id="title" th:value="${boardDTO.title}"/>
                                     </div>
                                 </div>
-                                <!-- title end -->
+                                <!-- Title End -->
 
-                                <!-- writer start -->
+                                <!-- Writer Start -->
                                 <div class="form-group row">
                                     <label for="writer" class="col-sm-3 text-end control-label col-form-label">Writer</label>
                                     <div class="col-sm-9">
-                                    <input type="text" class="form-control" name="writer" id="writer" th:value="${boardDTO.writer}"/>
+                                        <input type="text" class="form-control" name="writer" id="writer" th:value="${boardDTO.writer}"/>
                                     </div>
                                 </div>
-                                <!-- writer end -->
+                                <!-- Writer End -->
 
-                                <!-- registDate start -->
+                                <!-- Regist Date Start -->
                                 <div class="form-group row">
-                                    <label for="registDate" class="col-sm-3 text-end control-label col-form-label">RegistDate</label>
+                                    <label for="registDate" class="col-sm-3 text-end control-label col-form-label">Regist Date</label>
                                     <div class="col-sm-9">
-                                    <input type="text" class="form-control" name="registDate" id="registDate" th:value="${boardDTO.registDate}"readonly/>
+                                        <input type="text" class="form-control" name="registDate" id="registDate" th:value="${boardDTO.registDate}" readonly/>
                                     </div>
                                 </div>
-                                <!-- registDate end -->
+                                <!-- Regist Date End -->
 
-                                <!-- updateDate start -->
+                                <!-- Update Date Start -->
                                 <div class="form-group row">
-                                    <label for="modfiyDate" class="col-sm-3 text-end control-label col-form-label">UpdateDate</label>
+                                    <label for="modifyDate" class="col-sm-3 text-end control-label col-form-label">Update Date</label>
                                     <div class="col-sm-9">
-                                    <input type="text" class="form-control" name="modfiyDate" id="modfiyDate" th:value="${boardDTO.updateDate}" readonly/>
+                                        <input type="text" class="form-control" name="modifyDate" id="modifyDate" th:value="${boardDTO.updateDate}" readonly/>
                                     </div>
                                 </div>
-                                <!-- updateDate end -->
+                                <!-- Update Date End -->
 
-                                <!-- content start -->
+                                <!-- Content Start -->
                                 <div class="form-group row">
                                     <label for="content" class="col-sm-3 text-end control-label col-form-label">Content</label>
                                     <div class="col-sm-9">
-                                    <textarea class="form-control" name="content" id="content" th:text="${boardDTO.content}"></textarea>
+                                        <textarea class="form-control" name="content" id="content" th:text="${boardDTO.content}"></textarea>
                                     </div>
                                 </div>
-                                <!-- content end-->
+                                <!-- Content End -->
 
-                                 <!-- update button start -->
+                                 <!-- Update Button Start -->
                                 <div class="border-top">
                                     <div class="card-body">
                                     <button type="button" class="btn btn-primary updateButton">게시글 수정 submit</button>
                                     </div>
                                 </div>
-                                <!-- update button end -->
+                                <!-- Update Button End -->
 
                             </form>
+                            <!-- Form End -->
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <!-- Fragment Content End -->
 
+    <!-- JavaScript Start -->
     <script layout:fragment ="script" th:inline = "javascript">
 
+        // actionForm 등록 
         const actionForm = document.querySelector(".actionForm");
-
+        // actionUpdate 등록 
         const actionUpdate = document.querySelector(".updateButton")
 
+        // Update Action Method Start 
         actionUpdate.addEventListener("click", (e) => {
             e.preventDefault();
             e.stopPropagation();
@@ -102,6 +110,5 @@
             actionForm.submit();
         },false)
     </script>
-    
-</body>
+  </body>
 </html>

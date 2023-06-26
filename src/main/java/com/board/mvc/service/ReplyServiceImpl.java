@@ -13,8 +13,11 @@ import com.board.mvc.dto.reply.ReplyDTO;
 import com.board.mvc.dto.reply.ReplyUpdateDTO;
 import com.board.mvc.mappers.ReplyMapper;
 
+import lombok.extern.log4j.Log4j2;
+
 // ReplyService implemetns class 
 @Service
+@Log4j2
 public class ReplyServiceImpl implements ReplyService {
 
     // 의존성 주입 

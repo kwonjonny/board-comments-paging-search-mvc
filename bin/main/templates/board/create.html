@@ -8,19 +8,13 @@
     <title>Board Create Page</title>
 </head>
 <body>
-
  <!-- fragment content start -->
  <div layout:fragment="content">
     <h1>Board Create Page</h1>
     <div class="container-fluid">
-        <!-- ============================================================== -->
-        <!-- Start Page Content -->
-        <!-- ============================================================== -->
         <div class="row">
           <div class="col-md-12">
             <div class="card">
-
-              <!-- 등록 페이지 -->
               <!-- form start -->
               <form class="form-horizontal actionButton" name="valueCheck" method="post">
                 <div class="card-body">
@@ -28,7 +22,6 @@
                   <div class="form-group row">
                     <label for="fname" class="col-sm-3 text-end control-label col-form-label"></label>
                   </div>
-
                   <!-- title start -->
                   <div class="form-group row">
                     <label for="title" class="col-sm-3 text-end control-label col-form-label">Title</label>
@@ -36,8 +29,6 @@
                       <input type="text" class="form-control" id="title" name="title" th:required = "required"/>
                     </div>
                   </div>
-                  <!-- title end -->
-
                   <!-- writer start -->
                   <div class="form-group row">
                     <label for="writer" class="col-sm-3 text-end control-label col-form-label">Writer</label>
@@ -45,8 +36,6 @@
                       <input type="text" class="form-control" id="writer" name="writer" th:required = "required"/>
                     </div>
                   </div>
-                 <!-- writer end -->
-
                   <!-- content start -->
                   <div class="form-group row">
                     <label for="content" class="col-sm-3 text-end control-label col-form-label">Content</label>
@@ -55,8 +44,6 @@
                     </div>
                   </div>
                 </div>
-                <!-- content end -->
-
                 <!-- button start -->
                 <div class="border-top">
                   <div class="card-body">
@@ -65,34 +52,59 @@
                     </button>
                   </div>
                 </div>
-                <!-- button end -->
-
               </form>
-              <!-- form end -->
-
             </div>
           </div>
         </div>
      </div>
-     <!-- fragment content end -->
+     <!-- modal 창 start -->
+     <div class="modal" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-body"></div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
      <!-- javaScript start -->
-     <script layout:fragment ="script" th:inline = "javascript">
+     <script layout:fragment="script" th:inline="javascript">
 
-        const actionForm = document.querySelector(".actionButton");
-
-        const actionCreate = document.querySelector(".createButton");
-        actionCreate.addEventListener("click", (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-
-            actionForm.setAttribute("action", `/board/create`);
-            actionForm.setAttribute("method", `post`);
-            actionForm.submit();
-        },false);
-
-     </script>
-     <!-- javaScripit end -->
-    
-</body>
+      // querySelector 등록 
+      const actionForm = document.querySelector(".actionButton");
+      const actionCreate = document.querySelector(".createButton");
+      const modalView = new bootstrap.Modal(document.querySelector(".modal"));
+      const createValueCheck = document.querySelector(".modal .modal-body");
+  
+      // actionCreate 버튼 click 시 event 
+      actionCreate.addEventListener("click", (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+  
+          // 사용자가 입력한 값을 check 하기위한 valueCheck
+          const frm = document.forms['valueCheck'];
+  
+          if(frm.title.value == "") {
+              createValueCheck.innerHTML = "제목을 입력해주세요.";
+              modalView.show();
+              setTimeout(() => modalView.hide(), 1000);
+          } else if(frm.content.value == "") {
+              createValueCheck.innerHTML = "내용을 입력해주세요.";
+              modalView.show();
+              setTimeout(() => modalView.hide(), 1000);
+          } else if(frm.writer.value == "") {
+              createValueCheck.innerHTML = "작성자를 입력해주세요.";
+              modalView.show();
+              setTimeout(() => modalView.hide(), 1000);
+          } else {
+              actionForm.setAttribute("action", "/board/create");
+              actionForm.setAttribute("method", "post");
+              actionForm.submit();
+          }
+      }, false);
+    </script>
+  </body>
 </html>
