@@ -1,5 +1,5 @@
 
-# 개발 상태 : [게시판 개발 완료 , 댓글 대댓글 개발중(Server RestContoller, Service Test Complete)]
+# 개발 상태 : [게시판 개발 완료 , 댓글 개발 완료, SearchType keyword(검색) 개발 진행중 ]
 
 # boardReplyMvc
 - 프로젝트 유형: Board 게시판 , Reply 댓글, 페이지네이션 연습 
@@ -100,7 +100,8 @@
 | replyer | VARCHAR(100) | 답글을 작성한 사용자명 |
 | replyDate | TIMESTMAP | 답글이 작성된 날짜와 시간 (기본값은 현재 시간) |
 | modifyDate | TIMESTMAP | 답글이 수정된 날짜와 시간 (기본값은 현재 시간) |
-| gno | int | 그룹 번호 (기본값 0) |
+| gno | INT | 그룹 번호 (기본값 0) |
+|is_deleted| TINYINT | 댓글.대댓글이 삭제되었는지 확인하고 업데이트|
 
 
 SQL 스키마:
@@ -125,6 +126,7 @@ CREATE TABLE tbl_reply (
     replyDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     modifyDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     gno INT DEFAULT 0,
+    is_deleted TINYINT DEFAULT 0,
     FOREIGN KEY (tno) REFERENCES tbl_board(tno) ON DELETE CASCADE
 );
 
