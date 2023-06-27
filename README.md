@@ -101,7 +101,7 @@
 | replyDate | TIMESTMAP | 답글이 작성된 날짜와 시간 (기본값은 현재 시간) |
 | modifyDate | TIMESTMAP | 답글이 수정된 날짜와 시간 (기본값은 현재 시간) |
 | gno | INT | 그룹 번호 (기본값 0) |
-|is_deleted| TINYINT | 댓글.대댓글이 삭제되었는지 확인하고 업데이트|
+|isDeleted| TINYINT | 댓글.대댓글이 삭제되었는지 확인하고 업데이트|
 
 
 SQL 스키마:
@@ -126,7 +126,7 @@ CREATE TABLE tbl_reply (
     replyDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     modifyDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     gno INT DEFAULT 0,
-    is_deleted TINYINT DEFAULT 0,
+    isDeleted TINYINT DEFAULT 0,
     FOREIGN KEY (tno) REFERENCES tbl_board(tno) ON DELETE CASCADE
 );
 
