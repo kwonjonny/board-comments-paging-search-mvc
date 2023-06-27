@@ -46,9 +46,6 @@ public class ReplyController {
     @PostMapping("{tno}/new")
     public Map<String, Long> createReply(@PathVariable("tno") Long tno, @RequestBody ReplyCreateDTO replyCreateDTO) {
         log.info("RestController : ReplyCreate");
-
-        log.info(replyCreateDTO + "ReplyCreateDTO");
-
         replyCreateDTO.setTno(tno);
         Long rno = replyService.createReply(replyCreateDTO);
         return Map.of("result", rno);
