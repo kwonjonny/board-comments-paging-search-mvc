@@ -1,6 +1,8 @@
 package com.board.mvc.service;
 
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -36,7 +38,7 @@ public class ReplyServiceTests {
     private static final Long TEST_TNO = 1L;
     private static final Long TEST_RNO = 23L;
 
-    // BeforeEach 사용을 위한 ReplyCreatDTO, ReplyUpdateDTO Set Up
+    // BeforeEach 사용을 위한 ReplyCreatDTO, ReplyUpdateDTO 정의 
     private ReplyCreateDTO replyCreateDTO;
     private ReplyCreateDTO replyCreateChildDTO;
     private ReplyUpdateDTO replyUpdateDTO;
@@ -167,7 +169,7 @@ public class ReplyServiceTests {
         // THEN
         ReplyDTO updatedReplyChild = replyService.readReply(TEST_RNO);
         log.info(updatedReplyChild);
-        Assertions.assertNotNull(updatedReplyChild);
+        Assertions.assertNotNull(updatedReplyChild, "updatedReplyChild Should Be Success");
         log.info("========== End Update Reply Child Service Test ==========");
     }
 
@@ -175,14 +177,15 @@ public class ReplyServiceTests {
     @Test
     @Transactional
     @DisplayName("게시판 댓글 삭제 서비스 테스트")
-    public void dleteReplyServiceTest() {
+    public void deleteReplyServiceTest() {
         // GIVEN 
         log.info("========== Start Delete Reply Service Test ==========");
         // WHEN 
         replyService.deleteReply(TEST_RNO);
         // THEN 
         ReplyDTO deletedReply = replyService.readReply(TEST_RNO);
-        Assertions.assertNull(deletedReply, "deletedReply Should Be Null");
+        log.info(TEST_REPLY);
+        assertEquals("삭제된 댓글입니다!.", deletedReply.getReply());
         log.info("========== End Delete Reply Service Test ==========");
     }
 }

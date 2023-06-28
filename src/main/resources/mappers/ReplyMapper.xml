@@ -75,7 +75,7 @@
     <!-- ReplyMapper id = "updateReply" -->
     <update id="updateReply" parameterType="com.board.mvc.dto.reply.ReplyUpdateDTO">
         UPDATE tbl_reply
-        SET reply = #{reply}, replyer = #{replyer}, modifyDate = now()
+        SET reply = #{reply} , replyer = #{replyer}, modifyDate = now()
         WHERE rno = #{rno}
     </update>
 
@@ -83,8 +83,7 @@
     <!-- ReplyMapepr id = "incrementReplyCount" -->
     <update id="incrementReplyCount" parameterType="long">
         UPDATE tbl_board 
-        SET replyCnt
-        (SELECT COUNT(*) FROM tbl_reply WHERE tno={tno} AND isDeleted = 1)
+        SET replyCnt = replyCnt + 1 
         WHERE tno = #{tno}
     </update>
 
@@ -92,9 +91,8 @@
     <!-- ReplyMapper id = "decrementReplyCount" -->
     <update id="decrementReplyCount" parameterType="long">
         UPDATE tbl_board 
-        SET replyCnt = 
-        (SELECT COUNT(*) FROM tbl_reply WHERE tno = #{tno} AND isDeleted = 0)
-        WHERE tno = #{tno}
+        SET replyCnt = replyCnt - 1
+        WHERE tno = #{tno} AND replyCnt > 0
     </update>
 
 

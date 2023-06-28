@@ -22,6 +22,7 @@ public class ReplyDTO {
     private String replyer;
     private LocalDate replyDate;
     private LocalDate modifyDate;
+    private Long isDeleted;
 
     @Builder.Default
     private Long gno = 0L;
