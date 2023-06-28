@@ -41,8 +41,8 @@
     <!-- ReplyMapper id = "deleteReply" -->
     <update id="deleteReply" parameterType="long">
         UPDATE tbl_reply 
-        SET reply = "삭제된 댓글입니다!.", replyer = "삭제된 게시자입니다!.", is_deleted = 1
-        WHERE rno = #{rno} AND is_deleted = 0
+        SET reply = "삭제된 댓글입니다!.", replyer = "삭제된 게시자입니다!.", isDeleted = 1
+        WHERE rno = #{rno} AND isDeleted = 0
     </update>
 
 
@@ -92,7 +92,7 @@
     <update id="decrementReplyCount" parameterType="long">
         UPDATE tbl_board 
         SET replyCnt = 
-        (SELECT COUNT(*) FROM tbl_reply WHERE tno = #{tno} AND is_deleted = 0)
+        (SELECT COUNT(*) FROM tbl_reply WHERE tno = #{tno} AND isDeleted = 0)
         WHERE tno = #{tno}
     </update>
 
