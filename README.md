@@ -1,5 +1,5 @@
 
-# 개발 상태 : [게시판 개발 완료 , 댓글, 대댓글 (pagenation)개발 완료, SearchType keyword(검색) 개발 진행중 ]
+# 개발 상태 : [게시판 개발 완료 , 댓글, 대댓글 (pagenation)개발 완료, 검색조건 개발 진행중 ]
 
 # boardReplyMvc
 - 프로젝트 유형: Board 게시판 , Reply 댓글, 페이지네이션 연습 
