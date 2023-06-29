@@ -1,8 +1,13 @@
 const loadList = async(page) => {
-    const {data} = await axios.get(`${link}${tno}/list`);
-    console.log(data);
-    return data;
-  }
+  const {data} = await axios.get(`${link}${tno}/list`, {
+      params: {
+          page: page, // 페이지 번호를 쿼리 매개변수로 전송
+          size: 10 // 여기서 페이지 크기를 설정할 수 있습니다.
+      }
+  });
+  console.log(data);
+  return data;
+}
 
 const registReply = async(list) => {
 console.log

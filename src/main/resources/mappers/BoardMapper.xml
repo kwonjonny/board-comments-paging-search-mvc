@@ -8,30 +8,28 @@
 
 <!-- BoardMapper id = "listBoard" -->
 <select id="listBoard" parameterType="com.board.mvc.dto.board.BoardListDTO" resultType="com.board.mvc.dto.board.BoardListDTO">
-   
-   SELECT * FROM tbl_board
+    SELECT * FROM tbl_board
     WHERE tno > 0 
     <if test="searchType != null and keyword != null">
         AND (
-            <choose>
-                <when test="searchType == 'title' or searchType == 'all'">
-                    title LIKE CONCAT('%', #{keyword}, '%')
-                </when>
-                <when test="searchType == 'content' or searchType == 'all'">
-                    <if test="searchType == 'all'">OR</if>
-                    content LIKE CONCAT('%', #{keyword}, '%')
-                </when>
-                <when test="searchType == 'writer' or searchType == 'all'">
-                    <if test="searchType == 'all'">OR</if>
-                    writer LIKE CONCAT('%', #{keyword}, '%')
-                </when>
-            </choose>
+            <if test="searchType == 'title' or searchType == 'all'">
+                title LIKE CONCAT('%', #{keyword}, '%')
+            </if>
+            <if test="searchType == 'content' or searchType == 'all'">
+                <if test="searchType == 'all'">OR</if>
+                content LIKE CONCAT('%', #{keyword}, '%')
+            </if>
+            <if test="searchType == 'writer' or searchType == 'all'">
+                <if test="searchType == 'all'">OR</if>
+                writer LIKE CONCAT('%', #{keyword}, '%')
+            </if>
         )
     </if>
     ORDER BY tno DESC
     LIMIT #{skip}, #{size}
-
 </select>
+
+
 
 
 <!-- BoardMapper id = "readBoard" -->

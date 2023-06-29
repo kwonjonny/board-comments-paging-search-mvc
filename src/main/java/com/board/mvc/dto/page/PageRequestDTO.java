@@ -1,5 +1,8 @@
 package com.board.mvc.dto.page;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -22,7 +25,8 @@ public class PageRequestDTO {
     
     // 검색 조건 
     private String searchType;  // 검색 타입
-    private String keyword;    // 검색 키워드
+    private String keyword;     // 검색 키워드
+    private String link;        // 검색 조건 , 페이지, 사이즈 통합 
 
     // if page 요청이 0 보다 작으면 강제 1 page
     public void setPage(int page) {
@@ -55,4 +59,33 @@ public class PageRequestDTO {
         int temp = (int) (Math.ceil(this.page / 10.0) * (10 * size));
         return temp + 1;
     }
+
+     //link
+    public String getLink(){
+
+    if(link == null){
+      //문자열 합치기
+      StringBuilder strBuilder = new StringBuilder();
+
+      //페이지,사이즈 append
+      strBuilder.append("page=" + this.page);
+      strBuilder.append("&size=" + this.size);
+
+      //검색타입
+      if(searchType != null && searchType.length() > 0){
+        strBuilder.append("&type=" + this.searchType);
+      }
+      //검색어
+      if(keyword != null){
+        try {
+          strBuilder.append("&keyword=" + URLEncoder.encode(keyword,"UTF-8"));
+        } catch (UnsupportedEncodingException e) {
+          e.printStackTrace();
+        }
+      }
+      //toString으로 String전달
+      link = strBuilder.toString();
+    }
+    return link;
+  }
 }

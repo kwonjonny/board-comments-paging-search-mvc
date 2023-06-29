@@ -69,7 +69,7 @@ public class ReplyServiceImpl implements ReplyService {
     public PageResponseDTO<ReplyDTO> listReply(PageRequestDTO pageRequestDTO, Long tno) {
         List<ReplyDTO> list = replyMapper.listReply(pageRequestDTO, tno);
         int total = replyMapper.totalReply(tno);
-
+        
         return PageResponseDTO.<ReplyDTO>withAll()
         .list(list)
         .total(total)

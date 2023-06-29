@@ -42,11 +42,6 @@ public class BoardServiceImpl implements BoardService {
     @Override
     @Transactional
     public PageResponseDTO<BoardListDTO> listBoard(PageRequestDTO pageRequestDTO) {
-
-        // 검색 조건 설정 
-        String searchType = pageRequestDTO.getSearchType();
-        String keyword = pageRequestDTO.getKeyword();
-
         List<BoardListDTO> list = boardMapper.listBoard(pageRequestDTO);
         int total = boardMapper.total(pageRequestDTO);
 
