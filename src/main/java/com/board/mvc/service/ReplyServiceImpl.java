@@ -94,5 +94,5 @@ public class ReplyServiceImpl implements ReplyService {
     @Transactional
     public int updateReply(ReplyUpdateDTO replyUpdateDTO) {
         return replyMapper.updateReply(replyUpdateDTO);
-    }
+    } 
 }
