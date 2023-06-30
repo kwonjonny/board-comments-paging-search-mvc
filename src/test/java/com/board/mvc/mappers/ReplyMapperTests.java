@@ -36,11 +36,14 @@ public class ReplyMapperTests {
     private static final Long TEST_TNO = 1L;
     private static final Long TEST_RNO = 1L;
 
+    // BeforeEach 사용을 위한 ReplyCreateDTO, ReplyUpdateDTO 정의 
     private ReplyCreateDTO replyCreateDTO;
     private ReplyCreateDTO replyCreateChildDTO;
     private ReplyUpdateDTO replyUpdateDTO;
     private ReplyUpdateDTO replyUpdateChildDTO;
 
+    // Reply Create Test Set Up
+    // Reply Update TEst Set Up
     @BeforeEach
     public void setUp() {
         replyCreateDTO = ReplyCreateDTO.builder()
