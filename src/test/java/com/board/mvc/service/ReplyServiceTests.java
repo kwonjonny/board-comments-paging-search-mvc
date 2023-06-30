@@ -173,7 +173,7 @@ public class ReplyServiceTests {
         log.info("========== End Update Reply Child Service Test ==========");
     }
 
-    // Delete Reply Child Test Service
+    // Delete Reply Test Service
     @Test
     @Transactional
     @DisplayName("게시판 댓글 삭제 서비스 테스트")
